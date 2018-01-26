@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour {
 	private string _HorizontalAxis = "Horizontal";
 	private string _VerticalAxis = "Vertical";
 	
-	void InitPlayer () {
+	void Start () {
+		
 		_HorizontalAxis += _playerNumber.ToString();
 	}
 
