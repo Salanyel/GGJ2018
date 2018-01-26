@@ -4,5 +4,6 @@
 public enum ENUM_GAMESTATE
 {
     NONE = 0,
-    LOADING
+    LOADING,
+	PLAYING
 };
