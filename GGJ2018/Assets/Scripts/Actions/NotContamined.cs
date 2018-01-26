@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NotContaminedAction : PlayerActions {
+public class NotContamined : Actions {
 
 	override protected void Awake() {
 		_actionKey = InputData._Action;

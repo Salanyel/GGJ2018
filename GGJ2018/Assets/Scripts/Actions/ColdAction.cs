@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColdAction : PlayerActions {
 
 	override protected void Awake() {
-		_actionKey = InputData._Action + GetComponent<Player>().PlayerNumber;
+		_actionKey = InputData._Action + GetComponent<Player>().PlayerNumber
 	}
 
 	override public void Action() {

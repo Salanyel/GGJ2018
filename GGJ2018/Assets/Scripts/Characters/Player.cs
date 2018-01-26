@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public bool _isContamined;
-	public int _playerNumber;
+	public int _playerNumber = 1;
 
 	public bool IsContamined {
 		get {return _isContamined;}
