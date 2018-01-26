@@ -23,8 +23,10 @@ public class PlayerController : MonoBehaviour {
 		var x = Input.GetAxis(_HorizontalAxis) * Time.deltaTime * _playerSpeed;
         var z = Input.GetAxis(_VerticalAxis) * Time.deltaTime * _playerSpeed;
 
-        transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
-		
+		Vector3 direction = new Vector3(x,0.0f,z);
+
+		transform.Translate(direction, Space.World);
+		transform.rotation = Quaternion.LookRotation(direction);
+
 	}
 }
