@@ -30,7 +30,6 @@ public class GameManager : Singleton<GameManager> {
 		ChangeGameState(ENUM_GAMESTATE.LOADING);
 	}	
 
-
 	void Update(){
 		
 		if (_gameState == ENUM_GAMESTATE.PLAYING) {
