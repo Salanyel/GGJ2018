@@ -29,7 +29,6 @@ public class GameManager : Singleton<GameManager> {
 		_game = gameObject.AddComponent<Cold>();
 	}	
 
-
 	void Update(){
 		_game.IsGameFinished();
 	}
