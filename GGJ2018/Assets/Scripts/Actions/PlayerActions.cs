@@ -30,7 +30,6 @@ public abstract class PlayerActions : MonoBehaviour {
 
 	public void SetActionKey(int p_playerNumber) {
 		_actionKey = InputData._Action + p_playerNumber;
-		Debug.Log("New action key: " + _actionKey);
 	}
 
 }

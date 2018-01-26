@@ -6,10 +6,9 @@ public class Cold : Illness {
 
 	override public bool IsGameFinished() {
 		bool _areAllPlayerSick = true;
-
-		foreach (Player player in GameManager.Instance.AllPlayers) {
-		Debug.Log("--- " + player.gameObject.name, player.gameObject);
-			if (!player.IsContamined) {
+		int i  = 0;
+		foreach (GameObject player in GameManager.Instance.AllPlayers) {
+			if (!player.GetComponent<Player>().IsContamined) {
 				_areAllPlayerSick = false;
 				break;
 			}

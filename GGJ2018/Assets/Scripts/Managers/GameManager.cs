@@ -13,9 +13,9 @@ public class GameManager : Singleton<GameManager> {
 
     private ENUM_GAMESTATE _gameState;
 	Illness _game;
-	Player[] _players;
+	GameObject[] _players;
 
-	public Player[] AllPlayers {
+	public GameObject[] AllPlayers {
 		get {return _players;}
 	}
 
@@ -31,7 +31,9 @@ public class GameManager : Singleton<GameManager> {
 	void Update(){
 		
 		if (_gameState == ENUM_GAMESTATE.PLAYING) {
-			_game.IsGameFinished();
+			if (_game.IsGameFinished()) {
+				ChangeGameState(ENUM_GAMESTATE.END);
+			}
 		}
 	}
 
@@ -52,7 +54,13 @@ public class GameManager : Singleton<GameManager> {
 		
 			case ENUM_GAMESTATE.LOADING:
 			LoadPlayers();
-			//ChangeGameState(ENUM_GAMESTATE.PLAYING);
+			ChangeGameState(ENUM_GAMESTATE.PLAYING);
+			break;
+
+
+			case ENUM_GAMESTATE.END:
+			Debug.Log("/ ! \\ END behaviour for game manager", gameObject);
+			ChangeGameState(ENUM_GAMESTATE.SCORING);
 			break;
 
             default:
@@ -62,11 +70,10 @@ public class GameManager : Singleton<GameManager> {
     }
 
 	void LoadPlayers() {
-		GameObject player;
-
-		_players = new Player[4];
+		_players = new GameObject[4];
 
 		for (int i = 0; i < 4; ++i) {
+			GameObject player;
 			player = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			Player p = player.AddComponent<Player>();
 			p.PlayerNumber = i;
@@ -99,7 +106,7 @@ public class GameManager : Singleton<GameManager> {
 			}
 
 			player.GetComponent<PlayerActions>().SetActionKey(i + 1);
-
+			_players[i] = player;
 		}
 	}
 
