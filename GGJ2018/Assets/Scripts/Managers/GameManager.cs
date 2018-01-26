@@ -12,10 +12,27 @@ public class GameManager : Singleton<GameManager> {
     #region Private_Attributes
 
     private ENUM_GAMESTATE m_gameState;
+	Illness _game;
+	int[] _players;
+
+	public int[] AllPlayers {
+		get {return _players;}
+	}
 
     #endregion
 
     #region Unity_Methods
+	
+	void Awake() {
+		_players = new int[]{0, 1, 2, 3, 4};
+
+		_game = gameObject.AddComponent<Cold>();
+	}	
+
+
+	void Update(){
+		_game.IsGameFinished();
+	}
 
     #endregion
 
