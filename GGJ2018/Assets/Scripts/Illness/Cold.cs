@@ -7,9 +7,8 @@ public class Cold : Illness {
 	override public bool IsGameFinished() {
 		bool _areAllPlayerSick = true;
 
-		foreach (int player in GameManager.Instance.AllPlayers) {
-			Debug.Log("--- " + player);
-			if (player == 4) {
+		foreach (Player player in GameManager.Instance.AllPlayers) {
+			if (!player.IsContamined) {
 				_areAllPlayerSick = false;
 				break;
 			}
@@ -21,5 +20,4 @@ public class Cold : Illness {
 			return false;
 		}
 	}
-
 }
