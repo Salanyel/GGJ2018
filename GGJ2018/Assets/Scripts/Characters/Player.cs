@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
 	public bool _isContamined;
 	public int _playerNumber;
 
+	public bool _allowInput;
+
 	public bool IsContamined {
 		get {return _isContamined;}
 		set {_isContamined = value;}

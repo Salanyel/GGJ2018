@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColdAction : Actions {
 
 	override protected void Awake() {
-		_actionKey = InputData._ActionKeyboard;
+		_actionKey = InputData._Action;
 	}
 
 	override public void Action() {
