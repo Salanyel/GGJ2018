@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour {
 	
 	[SerializeField]
 	private float _playerSpeed = 5.0f;
-
-	private int _playerNumber;
-
-	public int PlayerNumber {
-		get { return _playerNumber;}
-		set { _playerNumber = value;}
-	}
 
 	private string _HorizontalAxis = "Horizontal";
 	private string _VerticalAxis = "Vertical";
 	
 	void Start () {
 		
+		int _playerNumber = this.GetComponent<Player>().PlayerNumber;
 		_HorizontalAxis += _playerNumber.ToString();
+		_VerticalAxis += _playerNumber.ToString();
 	}
 
 	void Update () {
