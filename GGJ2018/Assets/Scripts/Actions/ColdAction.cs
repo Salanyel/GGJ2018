@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColdAction : Actions {
+public class ColdAction : PlayerActions {
 
 	override protected void Awake() {
-		_actionKey = InputData._ActionKeyboard;
+		_actionKey = InputData._Action + GetComponent<Player>().PlayerNumber;
 	}
 
 	override public void Action() {

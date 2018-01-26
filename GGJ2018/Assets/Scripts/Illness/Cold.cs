@@ -8,6 +8,7 @@ public class Cold : Illness {
 		bool _areAllPlayerSick = true;
 
 		foreach (Player player in GameManager.Instance.AllPlayers) {
+		Debug.Log("--- " + player.gameObject.name, player.gameObject);
 			if (!player.IsContamined) {
 				_areAllPlayerSick = false;
 				break;

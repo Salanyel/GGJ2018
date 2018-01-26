@@ -24,9 +24,7 @@ public class GameManager : Singleton<GameManager> {
     #region Unity_Methods
 	
 	void Awake() {
-		_players = new Player[4];
 		_game = gameObject.AddComponent<Cold>();
-
 		ChangeGameState(ENUM_GAMESTATE.LOADING);
 	}	
 
@@ -54,6 +52,7 @@ public class GameManager : Singleton<GameManager> {
 		
 			case ENUM_GAMESTATE.LOADING:
 			LoadPlayers();
+			//ChangeGameState(ENUM_GAMESTATE.PLAYING);
 			break;
 
             default:
@@ -98,6 +97,8 @@ public class GameManager : Singleton<GameManager> {
 				Debug.LogError("--- Player not recognized");
 				break;
 			}
+
+			player.GetComponent<PlayerActions>().SetActionKey(i + 1);
 
 		}
 	}
