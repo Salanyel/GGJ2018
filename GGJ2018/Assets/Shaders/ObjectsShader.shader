@@ -1,4 +1,4 @@
-﻿Shader "Custom/OcclusionShader" {
+﻿Shader "Custom/ObjectsShader" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
@@ -8,6 +8,7 @@
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
 		_IsDisplaced("Displacement trigger", Range(0, 1)) = 0.0
+		_DisplacementOnXOrY("0 for X and 1 for Y", Range(0, 1)) = 0.0
 		_DisplacementSpeed("Displacement speed", float) = 1.0
 	}
 	SubShader {
@@ -37,6 +38,7 @@
 		fixed4 _Color;
 
 		half _IsDisplaced;
+		half _DisplacementOnXOrY;
 		float _DisplacementSpeed;
 
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
@@ -51,7 +53,11 @@
 			float2 uvModified = IN.uv_MainTex;
 
 			if (_IsDisplaced == 1) {
-				uvModified.x += _Time[0] * _DisplacementSpeed;
+				if (_DisplacementOnXOrY == 0) {
+					uvModified.x += _Time[0] * _DisplacementSpeed;
+				} else {
+					uvModified.y += _Time[0] * _DisplacementSpeed;	
+				}
 			}
 
 			// Albedo comes from a texture tinted by color

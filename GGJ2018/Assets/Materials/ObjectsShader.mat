@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Custom_OcclusionShader
+  m_Name: ObjectsShader
   m_Shader: {fileID: 4800000, guid: 1dd4483cfe32eab49aefff4b778e05dd, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
