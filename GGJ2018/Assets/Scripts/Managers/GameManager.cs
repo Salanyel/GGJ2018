@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager> {
 
     #region Private_Attributes
 
-    private ENUM_GAMESTATE _gameState;
+    public ENUM_GAMESTATE _gameState;
 	private ENUM_ILLNESS _illness;
 
 	Illness _game;
@@ -113,7 +113,6 @@ public class GameManager : Singleton<GameManager> {
 
 			SetCamera (indexSick);
 			_game.LaunchCinematic (GameObject.FindGameObjectWithTag (Tags.m_mainCamera), _cameraForScoring.transform.position, _cameraForScoring.transform.eulerAngles);
-			ChangeGameState (ENUM_GAMESTATE.COUNTDOWN);
 			break;
 
 		case ENUM_GAMESTATE.COUNTDOWN:
