@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NotContamined : Actions {
+public class NotContaminedAction : PlayerActions {
 
 	public float coolDownTime = 1f;
 	float lastAction;

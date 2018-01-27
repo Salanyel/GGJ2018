@@ -18,5 +18,4 @@ public class Player : MonoBehaviour {
 		get { return _playerNumber;}
 		set { _playerNumber = value;}
 	}
-
 }
