@@ -14,13 +14,13 @@ public class ElevatorBehaviour : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		if(other.CompareTag("Players")){
+		if(other.CompareTag(Tags._players)){
 			other.GetComponent<PlayerController>().AddElevator(gameObject.name, direction * speed);
 		}
 	}
 
 	void OnTriggerExit(Collider other){
-		if(other.CompareTag("Players")){
+		if(other.CompareTag(Tags._players)){
 			other.GetComponent<PlayerController>().RemoveElevator(gameObject.name);
 		}
 	}
