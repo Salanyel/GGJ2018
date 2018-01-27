@@ -5,7 +5,6 @@ using UnityEngine;
 public class ColdAction : PlayerActions {
 
 	private float _actionRange = 8f;
-	GameObject _indicator;
 
 	bool _isCharging;
 	float _chargeAmount;
