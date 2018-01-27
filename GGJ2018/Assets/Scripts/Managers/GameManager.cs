@@ -15,6 +15,8 @@ public class GameManager : Singleton<GameManager> {
     #region Private_Attributes
 
     private ENUM_GAMESTATE _gameState;
+	private ENUM_ILLNESS _illness;
+
 	Illness _game;
 	GameObject[] _players;
 	Vector3[] _spawnPositions;
@@ -31,6 +33,7 @@ public class GameManager : Singleton<GameManager> {
 	
 	void Awake() {
 		_game = gameObject.AddComponent<Cold>();
+		_illness = ENUM_ILLNESS.COLD;
 		ChangeGameState(ENUM_GAMESTATE.LOADING);
 	}	
 
@@ -121,8 +124,21 @@ public class GameManager : Singleton<GameManager> {
 		foreach(GameObject player in _players) {
 			if (player == p_player) {
 				player.GetComponent<Player>().SetIsContamined(true, _pathForIllnessMaterial);
+				ResetPlayerAction(player);
 				return;
 			}
+		}
+	}
+
+	void ResetPlayerAction(GameObject p_player) {
+		switch (_illness) {
+			case ENUM_ILLNESS.COLD:
+				p_player.AddComponent<ColdAction>().SetActionKey(p_player.GetComponent<Player>().PlayerNumber);
+				break;
+
+		default:
+			Debug.LogError("--- Action for illness " + _illness + " not set");
+			break;
 		}
 	}
 
