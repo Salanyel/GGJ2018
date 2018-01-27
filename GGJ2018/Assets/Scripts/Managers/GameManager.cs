@@ -87,6 +87,11 @@ public class GameManager : Singleton<GameManager> {
 
         switch (_gameState)
         {
+		case ENUM_GAMESTATE.LOADINGLEVEL:
+			Debug.LogError ("Do loading level behaviour");
+			ChangeGameState (ENUM_GAMESTATE.LOADING);
+			break;
+
 		case ENUM_GAMESTATE.LOADING:
 			LoadSpawnPosition();
 			LoadPlayers();
@@ -94,9 +99,18 @@ public class GameManager : Singleton<GameManager> {
 			break;
 
 		case ENUM_GAMESTATE.CINEMATICS:
-			Debug.Log ("--- Launching");
-			_game.LaunchCinematic (GameObject.FindGameObjectWithTag (Tags.m_mainCamera));
-			ChangeGameState (ENUM_GAMESTATE.CINEMATICS);
+			int indexSick = 0;
+
+			for (int i = 0; i < _players.Length; ++i) {
+				if (GetPlayer (i)._isContamined) {
+					indexSick = i;
+					break;
+				}
+			}
+
+			SetCamera (indexSick);
+			_game.LaunchCinematic (GameObject.FindGameObjectWithTag (Tags.m_mainCamera), _cameraForScoring.transform.position, _cameraForScoring.transform.eulerAngles);
+			ChangeGameState (ENUM_GAMESTATE.COUNTDOWN);
 			break;
 
 		case ENUM_GAMESTATE.COUNTDOWN:
@@ -307,8 +321,12 @@ public class GameManager : Singleton<GameManager> {
 	}
 
 	void SetCameraForWinner() {
-		GameObject winner = _players [_winner];
-		_cameraForScoring.transform.SetParent (winner.transform);
+		SetCamera (_winner);
+
+	}
+
+	void SetCamera(int p_index) {
+		_cameraForScoring.transform.SetParent (_players[p_index].transform);
 		_cameraForScoring.transform.localPosition = VectorData._cameraAvatarPosition;
 		_cameraForScoring.transform.localEulerAngles = VectorData._cameraAvatarEuler;
 	}

@@ -21,29 +21,30 @@ public class Cold : Illness {
 		}
 	}
 
-	override public void LaunchCinematic(GameObject p_camera) {
-		Debug.Log ("--- With camera: " + p_camera.name, p_camera);
-		//StartCoroutine (Cinematic (p_camera));
+	override public void LaunchCinematic(GameObject p_camera, Vector3 p_firstPosition, Vector3 p_firstEulerAngles) {
+		StartCoroutine (Cinematic (p_camera, p_firstPosition, p_firstEulerAngles));
 	}
 
-	IEnumerator Cinematic(GameObject p_camera) {
-		float cinematicDuration = 5;
+	IEnumerator Cinematic(GameObject p_camera, Vector3 p_firstPosition, Vector3 p_firstEulerAngles) {
+		float cinematicDuration = 3f;
 		float timeElapsed = 0f;
 		Vector3 finalPosition = p_camera.transform.position;
 		Vector3 finalEulerAngles = p_camera.transform.eulerAngles;
 
-		Debug.Log ("Setup ready");
+		p_camera.transform.position = p_firstPosition;
+		p_camera.transform.eulerAngles = p_firstEulerAngles;
+
+		yield return new WaitForSeconds (1f);
 
 		while (timeElapsed < cinematicDuration) {
-			Vector3 position = Vector3.Lerp (Vector3.zero, finalPosition, timeElapsed / cinematicDuration);
-			Vector3 eulerAngles = Vector3.Lerp (Vector3.zero, finalEulerAngles, timeElapsed / cinematicDuration);
+			Vector3 position = Vector3.Lerp (p_firstPosition, finalPosition, timeElapsed / cinematicDuration);
+			Vector3 eulerAngles = Vector3.Lerp (p_firstEulerAngles, finalEulerAngles, timeElapsed / cinematicDuration);
 
 			p_camera.transform.position = position;
 			p_camera.transform.eulerAngles = eulerAngles;
 
 			timeElapsed += Time.deltaTime;
 			yield return new WaitForEndOfFrame ();
-			Debug.Log (timeElapsed + " / " + cinematicDuration);
 		}
 
 		Debug.Log ("Ended");
