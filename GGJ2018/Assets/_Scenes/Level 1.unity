@@ -1983,7 +1983,7 @@ Prefab:
         type: 2}
       propertyPath: _DoorBlocker
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 839363249}
     - target: {fileID: 114201221022158512, guid: d72e188b8ed72cc4badbe4c022bddea6,
         type: 2}
       propertyPath: _stationPosition.x
@@ -2837,6 +2837,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 750936820}
   m_Mesh: {fileID: 4300000, guid: 64ed0a6efcc8aa04690fa50c971a6017, type: 3}
+--- !u!114 &755246569 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114201221022158512, guid: d72e188b8ed72cc4badbe4c022bddea6,
+    type: 2}
+  m_PrefabInternal: {fileID: 763719415}
+  m_Script: {fileID: 11500000, guid: 488a62ced024aab4b9ce3698cbbc59dd, type: 3}
 --- !u!1001 &763719415
 Prefab:
   m_ObjectHideFlags: 0
@@ -2884,7 +2890,7 @@ Prefab:
         type: 2}
       propertyPath: _DoorBlocker
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 894944254}
     - target: {fileID: 114201221022158512, guid: d72e188b8ed72cc4badbe4c022bddea6,
         type: 2}
       propertyPath: _stationPosition.x
@@ -3517,6 +3523,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4939494300477504, guid: d72e188b8ed72cc4badbe4c022bddea6,
     type: 2}
   m_PrefabInternal: {fileID: 84039153}
+--- !u!1 &839363249 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1006585259979742, guid: d72e188b8ed72cc4badbe4c022bddea6,
+    type: 2}
+  m_PrefabInternal: {fileID: 563215857}
 --- !u!4 &845176221 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4457025994845966, guid: 7dced73a8d6252f4cb4e28e43340e0b9,
@@ -3842,6 +3853,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 894519521}
   m_Mesh: {fileID: 4300000, guid: a7e80d6d4d635a642b5dfc18359cabbf, type: 3}
+--- !u!1 &894944254 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1006585259979742, guid: d72e188b8ed72cc4badbe4c022bddea6,
+    type: 2}
+  m_PrefabInternal: {fileID: 763719415}
 --- !u!1 &909932702
 GameObject:
   m_ObjectHideFlags: 0
@@ -4893,6 +4909,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4939494300477504, guid: d72e188b8ed72cc4badbe4c022bddea6,
     type: 2}
   m_PrefabInternal: {fileID: 563215857}
+--- !u!114 &1151198279 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114201221022158512, guid: d72e188b8ed72cc4badbe4c022bddea6,
+    type: 2}
+  m_PrefabInternal: {fileID: 563215857}
+  m_Script: {fileID: 11500000, guid: 488a62ced024aab4b9ce3698cbbc59dd, type: 3}
 --- !u!1001 &1155174052
 Prefab:
   m_ObjectHideFlags: 0
@@ -5518,8 +5540,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carList:
   - {fileID: 1781212380}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1151198279}
+  - {fileID: 755246569}
   _isOccupied: 0
   _colliderRail: {fileID: 305276814}
 --- !u!4 &1448175486
