@@ -2,6 +2,7 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
+		_NormalMap("Normal Map", 2D) = "bump" {}
 		_OccluTex ("Occlusion map", 2D) = "white" {}
 		_OccluStrengh("Occlusion strengh", Range(0,1)) = 0.5
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
@@ -19,11 +20,14 @@
 		#pragma target 3.0
 
 		sampler2D _MainTex;
+		Sampler2D _NormalMap;
 		sampler2D _OccluTex;
+
 		half _OccluStrengh;
 
 		struct Input {
 			float2 uv_MainTex;
+			float2 uv_NormalMap;
 		};
 
 		half _Glossiness;
@@ -43,6 +47,7 @@
 			fixed4 occlu = tex2D(_OccluTex, IN.uv_MainTex);
 
 			o.Albedo = lerp(c.rgb, c.rgb * occlu.rgb, _OccluStrengh);
+			o.Normal = UnpackNormal (tex2D (_NormalMap, IN.uv_NormalMap));
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
