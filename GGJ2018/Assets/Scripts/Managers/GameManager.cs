@@ -9,7 +9,9 @@ public class GameManager : Singleton<GameManager> {
 
     #region Public_Attributes
 
+	public bool _isIllPlayerForcedAtBeginning;
 	public int _illPlayerForTest;
+	public int _numberOfPlayersInTheGame = 4;
 	public float _SecondsForGame;
 	public GameObject _scoringPrefab;
 	public GameObject _charactersBodyPrefab;
@@ -158,7 +160,7 @@ public class GameManager : Singleton<GameManager> {
 
 	void LoadSpawnPosition() {
 
-		_spawnPositions = new Vector3[4];
+		_spawnPositions = new Vector3[_numberOfPlayersInTheGame];
 		int index = 0;
 
 		foreach(HookForSpawn spawn in FindObjectsOfType<HookForSpawn>()) {
@@ -168,10 +170,18 @@ public class GameManager : Singleton<GameManager> {
 	}
 
 	void LoadPlayers() {
-		_players = new GameObject[4];
-		_playerScore = new Text[4];
+		_players = new GameObject[_numberOfPlayersInTheGame];
+		_playerScore = new Text[_numberOfPlayersInTheGame];
 
-		for (int i = 0; i < 4; ++i) {
+		int illPlayer;
+
+		if (_isIllPlayerForcedAtBeginning) {
+			illPlayer = _illPlayerForTest;
+		} else {
+			illPlayer = Mathf.FloorToInt (Random.Range (0, _numberOfPlayersInTheGame));
+		}
+
+		for (int i = 0; i < _numberOfPlayersInTheGame; ++i) {
 			GameObject player;
 			player = Instantiate(_charactersBodyPrefab);
 			player.name = "Player" + (i+1).ToString();
@@ -186,7 +196,7 @@ public class GameManager : Singleton<GameManager> {
 
 			player.transform.position = _spawnPositions[i];
 
-			if (i == _illPlayerForTest) {
+			if (i == illPlayer) {
 					player.AddComponent<ColdAction>();
 			} else {
 				player.AddComponent<NotContaminedAction>();
@@ -207,8 +217,8 @@ public class GameManager : Singleton<GameManager> {
 		_players[2].GetComponent<Player>().SetMaterial(ResourcesData._player3Material);
 		_players[3].GetComponent<Player>().SetMaterial(ResourcesData._player4Material);
 
-		_players[_illPlayerForTest].GetComponent<Player>().SetIsContamined(true);
-		_players [_illPlayerForTest].GetComponent<Player> ().Score = 3 * 1064;
+		_players[illPlayer].GetComponent<Player>().SetIsContamined(true);
+		_players [illPlayer].GetComponent<Player> ().Score = 3 * 1064;
 	}
 
 	void UpdateScore() {
