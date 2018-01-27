@@ -11,6 +11,7 @@ TagManager:
   - ScoringRecap
   - FinalScorePanel
   - CameraForScoring
+  - LoadingScreen
   layers:
   - Default
   - TransparentFX

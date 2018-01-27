@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager> {
 
     #region Private_Attributes
 
-    private ENUM_GAMESTATE _gameState;
+    public ENUM_GAMESTATE _gameState;
 	private ENUM_ILLNESS _illness;
 
 	Illness _game;
@@ -60,7 +60,7 @@ public class GameManager : Singleton<GameManager> {
 	void Start() {
 		_finalScorePanel.SetActive (false);
 		SetAllScoreElementsTransparency (0);
-		ChangeGameState(ENUM_GAMESTATE.LOADING);
+		ChangeGameState(ENUM_GAMESTATE.LOADINGLEVEL);
 	}
 
 	void Update(){
@@ -90,8 +90,7 @@ public class GameManager : Singleton<GameManager> {
         switch (_gameState)
         {
 		case ENUM_GAMESTATE.LOADINGLEVEL:
-			Debug.LogError ("Do loading level behaviour");
-			ChangeGameState (ENUM_GAMESTATE.LOADING);
+			StartCoroutine (LoadingBar ());
 			break;
 
 		case ENUM_GAMESTATE.LOADING:
@@ -114,7 +113,6 @@ public class GameManager : Singleton<GameManager> {
 
 			SetCamera (indexSick);
 			_game.LaunchCinematic (GameObject.FindGameObjectWithTag (Tags.m_mainCamera), _cameraForScoring.transform.position, _cameraForScoring.transform.eulerAngles);
-			ChangeGameState (ENUM_GAMESTATE.COUNTDOWN);
 			break;
 
 		case ENUM_GAMESTATE.COUNTDOWN:
@@ -368,6 +366,42 @@ public class GameManager : Singleton<GameManager> {
 			current += Time.deltaTime;
 			yield return new WaitForEndOfFrame ();
 		}
+	}
+
+	IEnumerator LoadingBar() {
+		Debug.Log ("Coroutine");
+		GameObject loadingScreen = GameObject.FindGameObjectWithTag (Tags._loadingScreen);
+		RectTransform bar = null;
+
+		foreach (Image image in loadingScreen.GetComponentsInChildren<Image>()) {
+			if (image.gameObject.name == "Content") {
+				bar = image.gameObject.GetComponent<RectTransform>();
+				break;
+			}
+		}
+
+		float timeForLoading = 5f;
+		float currentTime = 0f;
+		float currentBeginning = bar.transform.localPosition.x;
+		float arbitraryValue = -754f;
+		Debug.Log (currentBeginning);
+
+		while (currentTime < timeForLoading) {
+			float newPos = Mathf.Lerp (currentBeginning, arbitraryValue, currentTime / timeForLoading);
+
+			if (newPos > arbitraryValue) {
+				newPos = arbitraryValue;
+			}
+
+			Vector3 newPosV = new Vector3 (newPos, 0f, 0f);
+
+			bar.transform.localPosition = newPosV;
+			currentTime += Time.deltaTime;
+			yield return new WaitForEndOfFrame ();
+		}
+
+		GameManager.Instance.ChangeGameState (ENUM_GAMESTATE.LOADING);
+		Destroy (loadingScreen);
 	}
 
     #endregion

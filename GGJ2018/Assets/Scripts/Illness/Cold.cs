@@ -47,7 +47,6 @@ public class Cold : Illness {
 			yield return new WaitForEndOfFrame ();
 		}
 
-		Debug.Log ("Ended");
 		GameManager.Instance.ChangeGameState (ENUM_GAMESTATE.COUNTDOWN);
 	}
 }
