@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager> {
     #region Public_Attributes
 
 	public int _illPlayerForTest;
+	public GameObject _charactersBodyPrefab;
 
     #endregion
 
@@ -91,10 +92,8 @@ public class GameManager : Singleton<GameManager> {
 		_pathForIllnessMaterial = ResourcesData._coldMaterial;
 		for (int i = 0; i < 4; ++i) {
 			GameObject player;
-			player = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			player = Instantiate(_charactersBodyPrefab);
 			player.name = "Player" + (i+1).ToString();
-			Rigidbody rigidbody = player.AddComponent<Rigidbody>();
-			rigidbody.isKinematic = false;
 
 			Player p = player.AddComponent<Player>();
 			p.PlayerNumber = i + 1;
