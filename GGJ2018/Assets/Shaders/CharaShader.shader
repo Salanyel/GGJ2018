@@ -66,7 +66,7 @@
 
 			//Maladie
 			//Verdatrie
-			_SickMask = lerp(0.0,_Sickness, m.g);
+			_SickMask = lerp(0.0,_Sickness, saturate(m.g * 1.5));
 			c= lerp(c, _SickColor, saturate(_SickMask));
 
 			//Yeux Rouges
