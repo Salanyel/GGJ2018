@@ -51,7 +51,7 @@
 			float2 uvModified = IN.uv_MainTex;
 
 			if (_IsDisplaced == 1) {
-				uvModified.x += _Time[0] * _DisplacementSpeed;1
+				uvModified.x += _Time[0] * _DisplacementSpeed;
 			}
 
 			// Albedo comes from a texture tinted by color
