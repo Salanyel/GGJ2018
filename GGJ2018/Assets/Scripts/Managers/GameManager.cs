@@ -16,6 +16,8 @@ public class GameManager : Singleton<GameManager> {
     private ENUM_GAMESTATE _gameState;
 	Illness _game;
 	GameObject[] _players;
+	Vector3[] _spawnPositions;
+
 	string _pathForIllnessMaterial;
 
 	public GameObject[] AllPlayers {
@@ -54,8 +56,8 @@ public class GameManager : Singleton<GameManager> {
 
         switch (_gameState)
         {
-		
 			case ENUM_GAMESTATE.LOADING:
+			LoadSpawnPosition();
 			LoadPlayers();
 			ChangeGameState(ENUM_GAMESTATE.PLAYING);
 			break;
@@ -71,6 +73,18 @@ public class GameManager : Singleton<GameManager> {
                 break;
         }
     }
+
+	void LoadSpawnPosition() {
+
+		_spawnPositions = new Vector3[4];
+		int index = 0;
+
+		foreach(HookForSpawn spawn in FindObjectsOfType<HookForSpawn>()) {
+			_spawnPositions[index] = spawn.transform.position;
+			Destroy(spawn.gameObject);
+			index++;
+		}
+	}
 
 	void LoadPlayers() {
 		_players = new GameObject[4];
@@ -89,34 +103,13 @@ public class GameManager : Singleton<GameManager> {
 
 			p.SetIsContamined(false);
 
+			player.transform.position = _spawnPositions[i];
+
 			if (i == _illPlayerForTest) {
 				p.SetIsContamined(true, _pathForIllnessMaterial);
 					player.AddComponent<ColdAction>();
 			} else {
 				player.AddComponent<NotContaminedAction>();
-			}
-
-
-			switch(i) {
-				case 0:
-					player.transform.position = VectorData._player1Position;
-				break;
-
-				case 1:
-					player.transform.position = VectorData._player2Position;
-				break;
-
-				case 2:
-					player.transform.position = VectorData._player3Position;
-				break;
-
-				case 3:
-					player.transform.position = VectorData._player4Position;
-				break;
-
-				default:
-				Debug.LogError("--- Player not recognized");
-				break;
 			}
 
 			player.GetComponent<PlayerActions>().SetActionKey(i + 1);
