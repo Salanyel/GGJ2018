@@ -12,6 +12,8 @@ public class MetroController : MonoBehaviour {
 	public bool _isDoorOpened = false;
 	public bool _isSomeoneInside = false;
 
+	public GameObject _DoorBlocker;
+
 	private float _timerForTrainDepart = 0.0f;
 	private float _timerLimit;
 	public float _TimerBeforeTrainLeftStation = 10.0f;
@@ -26,6 +28,8 @@ public class MetroController : MonoBehaviour {
 		_initPosition = transform.position;
 
 		_timerLimit = Time.time + 10.0f;
+
+		_DoorBlocker.SetActive(false);
 	}
 	
 	void Update () {
@@ -48,7 +52,7 @@ public class MetroController : MonoBehaviour {
 	}
 
 	public void OnTriggerEnter (Collider _collider) {
-		
+
 		if (_collider.GetComponent<Player>()) {
 			_animator.SetBool("IsSomeoneInside", true);
 			_isSomeoneInside = true;
@@ -61,8 +65,20 @@ public class MetroController : MonoBehaviour {
 	}
 
 	public void StartWaitTimer () {
+		_timerForTrainDepart = 0.0f;
+		_animator.SetFloat("DepartureTime", _timerForTrainDepart);
 		_timerLimit = Time.time + 10.0f;
 		_isDoorOpened = true;
+	}
+
+	public void CloseDoors () {
+
+		Debug.Log("DoorBlocker Active");
+		_DoorBlocker.SetActive(true);
+	}
+
+	public void OpenDoors () {
+		_DoorBlocker.SetActive(false);
 	}
 
 }

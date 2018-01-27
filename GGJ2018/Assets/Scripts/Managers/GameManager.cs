@@ -193,7 +193,7 @@ public class GameManager : Singleton<GameManager> {
 
 		for (int i = 0; i < _players.Length; ++i) {
 			Player player = GetPlayer(i);
-			Debug.Log ("--- new score[" + player.PlayerNumber + "] : " + player.Score);
+			//Debug.Log ("--- new score[" + player.PlayerNumber + "] : " + player.Score);
 		}
 
 		//Display score
