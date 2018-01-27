@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33625359481955018}
   - component: {fileID: 23391283732609908}
   - component: {fileID: 95854605694458680}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: banc
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -53,9 +53,23 @@ public class ColdAction : PlayerActions {
 			Physics.Raycast(position, direction * _actionRange * _chargeAmount, out hitInfo, _actionRange * _chargeAmount);
 			
 			Debug.DrawRay(transform.position, direction * _actionRange * _chargeAmount,Color.yellow,4f);
+
 			if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
 				if(!hitted.Contains(hitInfo.collider.gameObject)){
-					hitted.Add(hitInfo.collider.gameObject);
+					if(hitInfo.collider.CompareTag(Tags._players)){
+						hitted.Add(hitInfo.collider.gameObject);
+					}else{
+						Rigidbody rigidbody = hitInfo.collider.GetComponent<Rigidbody>();
+						if (rigidbody != null) { 
+						float range = .2f;
+						Vector3 randv = new Vector3(
+						Random.Range(-range, range),
+						Random.Range(-range, range),
+						Random.Range(-range, range)
+						);
+						rigidbody.AddForce((transform.forward + randv) * 18f, ForceMode.Impulse);
+						}
+					}
 				}
 			}	
 		}
