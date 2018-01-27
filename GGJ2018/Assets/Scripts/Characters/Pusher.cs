@@ -29,7 +29,7 @@ public class Pusher : MonoBehaviour {
 	void Update(){
 		if(_doPush && Time.time < stopPushTime){
 			//deplace le joueur
-			
+			transform.Translate(_pushVector * Time.deltaTime, Space.World);
 		}else{
 			_doPush = false;
 		}

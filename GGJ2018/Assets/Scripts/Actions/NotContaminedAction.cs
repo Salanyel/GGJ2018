@@ -16,9 +16,13 @@ public class NotContaminedAction : PlayerActions {
 
 	void DoPushAction(){
 		RaycastHit hitInfo;
-		Physics.Raycast(transform.position, transform.forward, out hitInfo, actionPushRange, collisionMask);
+		Physics.Raycast(transform.position, transform.forward, out hitInfo, actionPushRange);
 		//push that guy
-		hitInfo.collider.GetComponent<Pusher>().Push(transform.forward);
+		if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
+			hitInfo.collider.GetComponent<Pusher>().Push(transform.forward);
+		}else{
+			Debug.Log("Coup dans le vide");
+		}
 
 	}
 
