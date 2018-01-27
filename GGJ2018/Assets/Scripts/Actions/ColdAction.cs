@@ -12,7 +12,6 @@ public class ColdAction : PlayerActions {
 	public float chargeSpeed = 2f;
 	public float attackAngle = 40f;
 	float _startTime;
-
 	PlayerController _playerController;
 
 	override protected void Awake() {
@@ -78,6 +77,20 @@ public class ColdAction : PlayerActions {
 		Fire();
 		GetComponent<Pusher>().Push(-transform.forward,.2f);
 
+	}
+
+	override protected void DoAction() {
+		_chargeAmount += chargeSpeed * Time.deltaTime;
+		_chargeAmount = Mathf.Clamp01(_chargeAmount);
+		_playerController.speedMultiplicator = .5f;
+
+	}
+
+	override protected void DoReleaseAction(){
+		_chargeAmount = 0f;
+		_playerController.speedMultiplicator = 1f;
+		Fire();
+		GetComponent<Pusher>().Push(-transform.forward,.2f);
 	}
 
 	IEnumerator HideDisplay() {

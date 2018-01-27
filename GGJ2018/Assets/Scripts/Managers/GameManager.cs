@@ -49,11 +49,11 @@ public class GameManager : Singleton<GameManager> {
 	void Update(){
 		
 		if (_gameState == ENUM_GAMESTATE.PLAYING) {
-			if (_game.IsGameFinished()) {
-				ChangeGameState(ENUM_GAMESTATE.END);
+			if (_game.IsGameFinished () || _timeBeforeEndOfTheRound < 1f) {
+				ChangeGameState (ENUM_GAMESTATE.END);
+			} else {
+				UpdateChronometer();
 			}
-
-			UpdateChronometer();
 		}
 	}
 
@@ -71,15 +71,18 @@ public class GameManager : Singleton<GameManager> {
 
         switch (_gameState)
         {
-			case ENUM_GAMESTATE.LOADING:
+		case ENUM_GAMESTATE.LOADING:
 			LoadSpawnPosition();
 			LoadPlayers();
 			ChangeGameState(ENUM_GAMESTATE.PLAYING);
 			break;
 
+		case ENUM_GAMESTATE.PLAYING:
+			SetAllPlayersMovementAllowance (true);
+			break;
 
-			case ENUM_GAMESTATE.END:
-			Debug.Log("/ ! \\ END behaviour for game manager", gameObject);
+		case ENUM_GAMESTATE.END:
+			SetAllPlayersMovementAllowance (false);
 			ChangeGameState(ENUM_GAMESTATE.SCORING);
 			break;
 
@@ -120,7 +123,6 @@ public class GameManager : Singleton<GameManager> {
 			player.transform.position = _spawnPositions[i];
 
 			if (i == _illPlayerForTest) {
-				p.SetIsContamined(true, _pathForIllnessMaterial);
 					player.AddComponent<ColdAction>();
 			} else {
 				player.AddComponent<NotContaminedAction>();
@@ -131,8 +133,14 @@ public class GameManager : Singleton<GameManager> {
 			_players[i] = player;
 
 			Instantiate(_scoringPrefab).transform.SetParent(_ScoringRecap.transform);
-
 		}
+
+		_players[0].GetComponent<Player>().SetMaterial(ResourcesData._notContaminedMaterial);
+		_players[1].GetComponent<Player>().SetMaterial(ResourcesData._player2Material);
+		_players[2].GetComponent<Player>().SetMaterial(ResourcesData._player3Material);
+		_players[3].GetComponent<Player>().SetMaterial(ResourcesData._player4Material);
+
+		_players[_illPlayerForTest].GetComponent<Player>().SetIsContamined(true, _pathForIllnessMaterial);
 	}
 
 	public void ContaminedPlayer(GameObject p_player) {
@@ -175,6 +183,12 @@ public class GameManager : Singleton<GameManager> {
 		seconds += Mathf.Floor(_timeBeforeEndOfTheRound % 60);
 
 		_chronometerRenderer.text = minutes + ":" + seconds;
+	}
+
+	void SetAllPlayersMovementAllowance(bool p_canMove) {
+		foreach(GameObject player in _players) {
+			player.GetComponent<Player>()._allowInput = p_canMove;
+		}
 	}
 
     #endregion
