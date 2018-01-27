@@ -26,6 +26,9 @@ public class Player : MonoBehaviour {
 
 		if (_isContamined) {
 			gameObject.GetComponentInChildren<MeshRenderer> ().materials [1].SetFloat (ResourcesData._shaderSickChannel, 1);
+			GameObject g =  Resources.Load("IllParticle") as GameObject;
+			Instantiate(g, transform);
+			g.transform.position = g.transform.position;
 		} else {
 			gameObject.GetComponentInChildren<MeshRenderer> ().materials [1].SetFloat (ResourcesData._shaderSickChannel, 0);
 		}
