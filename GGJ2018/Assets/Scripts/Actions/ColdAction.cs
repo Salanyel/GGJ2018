@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ColdAction : PlayerActions {
 
-	private float _actionRange = 2f;
+	private float _actionRange = 4f;
 	GameObject _indicator;
 
 	bool _isCharging;
 	float _chargeAmount;
 	public float chargeSpeed = 2f;
-
+	public float attackAngle = 40f;
+	float _startTime;
 	PlayerController _playerController;
 
 	override protected void Awake() {
@@ -34,26 +35,48 @@ public class ColdAction : PlayerActions {
 		_indicator.SetActive(true);
 		StartCoroutine(HideDisplay());
 
-		RaycastHit hitInfo;
-		Physics.Raycast(transform.position, transform.forward, out hitInfo, _actionRange + 0.5f);
-		
-		if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
-			GameManager.Instance.ContaminedPlayer(hitInfo.collider.gameObject);
+		foreach(GameObject g in SendRay()){
+			GameManager.Instance.ContaminedPlayer(g);
 		}
 	}
 
+	//renvoie la liste des players touches
+	GameObject[] SendRay(){
+
+		Debug.Log("Morve distance " + (_actionRange * _chargeAmount).ToString());
+
+		List<GameObject> hitted = new List<GameObject>();
+		for(int i=0; i < 8;i++){
+			RaycastHit hitInfo;
+			Vector3 direction = transform.forward;
+			direction = Quaternion.AngleAxis(attackAngle * (float)i/8f - (attackAngle/2f) ,Vector3.up) * direction;
+
+			Physics.Raycast(transform.position, direction, out hitInfo, _actionRange * _chargeAmount + 0.5f);
+			
+			Debug.DrawRay(transform.position, direction,Color.yellow,4f);
+			if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
+				if(!hitted.Contains(hitInfo.collider.gameObject)){
+					hitted.Add(hitInfo.collider.gameObject);
+				}
+			}	
+		}
+
+		
+		return hitted.ToArray();
+	} 
+
 	override protected void DoAction() {
-		_chargeAmount += chargeSpeed * Time.deltaTime;
-		_chargeAmount = Mathf.Clamp01(_chargeAmount);
+		_startTime = Time.time;
 		_playerController.speedMultiplicator = .5f;
 
 	}
 
 	override protected void DoReleaseAction(){
-		_chargeAmount = 0f;
+		_chargeAmount = Mathf.Clamp01((Time.time - _startTime)*chargeSpeed);
 		_playerController.speedMultiplicator = 1f;
 		Fire();
 		GetComponent<Pusher>().Push(-transform.forward,.2f);
+
 	}
 
 	IEnumerator HideDisplay() {
