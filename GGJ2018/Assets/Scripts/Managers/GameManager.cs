@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager> {
 
 	public int _illPlayerForTest;
 	public GameObject _charactersBodyPrefab;
+	public float _SecondsForGame;
+	public GameObject _scoringPrefab;
 
     #endregion
 
@@ -20,6 +22,11 @@ public class GameManager : Singleton<GameManager> {
 	Illness _game;
 	GameObject[] _players;
 	Vector3[] _spawnPositions;
+	
+	float _timeBeforeEndOfTheRound;
+	TextMesh _chronometerRenderer;
+
+	public GameObject _ScoringRecap;
 
 	string _pathForIllnessMaterial;
 
@@ -35,6 +42,8 @@ public class GameManager : Singleton<GameManager> {
 		_game = gameObject.AddComponent<Cold>();
 		_illness = ENUM_ILLNESS.COLD;
 		ChangeGameState(ENUM_GAMESTATE.LOADING);
+		_timeBeforeEndOfTheRound = _SecondsForGame;
+		_chronometerRenderer = GameObject.FindGameObjectWithTag(Tags._chronometer).GetComponent<TextMesh>();
 	}	
 
 	void Update(){
@@ -43,6 +52,8 @@ public class GameManager : Singleton<GameManager> {
 			if (_game.IsGameFinished()) {
 				ChangeGameState(ENUM_GAMESTATE.END);
 			}
+
+			UpdateChronometer();
 		}
 	}
 
@@ -117,6 +128,9 @@ public class GameManager : Singleton<GameManager> {
 			player.GetComponent<PlayerActions>().SetActionKey(i + 1);
 			player.AddComponent<PlayerController>();
 			_players[i] = player;
+
+			Instantiate(_scoringPrefab).transform.SetParent(_ScoringRecap.transform);
+
 		}
 	}
 
@@ -140,6 +154,26 @@ public class GameManager : Singleton<GameManager> {
 			Debug.LogError("--- Action for illness " + _illness + " not set");
 			break;
 		}
+	}
+
+	void UpdateChronometer() {
+		_timeBeforeEndOfTheRound -= Time.deltaTime;
+
+		string minutes = "";
+		string seconds = "";
+
+		if (_timeBeforeEndOfTheRound / 60 < 10) {
+			minutes = "0";
+		}
+
+		if (_timeBeforeEndOfTheRound % 60 < 10) {
+			seconds = "0";
+		}
+
+		minutes += Mathf.Floor(_timeBeforeEndOfTheRound / 60);
+		seconds += Mathf.Floor(_timeBeforeEndOfTheRound % 60);
+
+		_chronometerRenderer.text = minutes + ":" + seconds;
 	}
 
     #endregion
