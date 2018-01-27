@@ -1,16 +1,17 @@
 fileFormatVersion: 2
-guid: d142b9cdbaca0fd4894b8bcd7585e806
-timeCreated: 1517059733
+guid: 6e6f4f7b99834ee49b99278ca46c0447
+timeCreated: 1517061283
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: 'Material #25'
+    2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cylinder001
+    4300000: poteau
+    7400000: Take 001
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -42,7 +43,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.15
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

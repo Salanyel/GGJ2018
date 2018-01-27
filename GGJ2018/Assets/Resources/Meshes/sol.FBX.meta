@@ -1,16 +1,18 @@
 fileFormatVersion: 2
-guid: d142b9cdbaca0fd4894b8bcd7585e806
-timeCreated: 1517059733
+guid: 3b379e5166716394b9043de77546fb42
+timeCreated: 1517061282
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: 'Material #25'
+    2100000: 'Material #117'
+    2100002: 'Material #116'
+    2100004: 'Material #104'
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cylinder001
+    4300000: sol
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -42,7 +44,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.15
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
