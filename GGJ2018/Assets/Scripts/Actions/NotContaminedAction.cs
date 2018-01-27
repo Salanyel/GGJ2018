@@ -29,4 +29,7 @@ public class NotContaminedAction : PlayerActions {
 		
 	}
 
+	override protected void DoBehaviour(){
+	}
+
 }
