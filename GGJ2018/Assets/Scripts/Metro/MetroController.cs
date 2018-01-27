@@ -21,6 +21,13 @@ public class MetroController : MonoBehaviour {
 	private Animator _animator;
 
 	private Vector3 _initPosition;
+	public Vector3 _stationPosition;
+	public Vector3 _exitPosition;
+
+	public float _lerpPosition = 0f;
+
+	public bool _toStation = false;
+	public bool _toExit = false;
 
 	void Start () {
 		
@@ -33,8 +40,15 @@ public class MetroController : MonoBehaviour {
 	}
 	
 	void Update () {
-		
-		transform.Translate(Vector3.right *_metroSpeed * Time.deltaTime, Space.World);
+
+		//transform.Translate(transform.right *_metroSpeed * Time.deltaTime, Space.World);
+		if (_toStation) {
+			transform.position = Vector3.Lerp(_initPosition, _stationPosition, _lerpPosition);
+		}
+
+		if (_toExit) {
+			transform.position = Vector3.Lerp(_stationPosition, _exitPosition, _lerpPosition);
+		}
 
 		if (_isDoorOpened) {
 
@@ -49,6 +63,10 @@ public class MetroController : MonoBehaviour {
 
 	public void ResetPosition () {
 		transform.position = _initPosition;
+		_toExit = false;
+		_toStation = false;
+		_lerpPosition = 0f;
+		ResetTimer();
 	}
 
 	public void OnTriggerEnter (Collider _collider) {
@@ -65,10 +83,14 @@ public class MetroController : MonoBehaviour {
 	}
 
 	public void StartWaitTimer () {
+		ResetTimer();
+		_isDoorOpened = true;
+	}
+
+	public void ResetTimer () {
 		_timerForTrainDepart = 0.0f;
 		_animator.SetFloat("DepartureTime", _timerForTrainDepart);
 		_timerLimit = Time.time + 10.0f;
-		_isDoorOpened = true;
 	}
 
 	public void CloseDoors () {
@@ -81,4 +103,15 @@ public class MetroController : MonoBehaviour {
 		_DoorBlocker.SetActive(false);
 	}
 
+	public void ToStation() {
+		ResetTimer();
+		_toExit = false;
+		_toStation = true;
+	}
+
+	public void ToExit() {
+		ResetTimer();
+		_toStation = false;
+		_toExit = true;
+	}
 }
