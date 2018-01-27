@@ -7,6 +7,8 @@ public class GameManager : Singleton<GameManager> {
 
     #region Public_Attributes
 
+	public int _illPlayerForTest;
+
     #endregion
 
     #region Private_Attributes
@@ -77,27 +79,33 @@ public class GameManager : Singleton<GameManager> {
 			player = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			Player p = player.AddComponent<Player>();
 			p.PlayerNumber = i + 1;
+
 			player.AddComponent<Pusher>();
+
+			p.SetIsContamined(false);
+
+			if (i == _illPlayerForTest) {
+				p.SetIsContamined(true, ResourcesData._coldMaterial);
+					player.AddComponent<ColdAction>();
+			} else {
+				player.AddComponent<NotContaminedAction>();
+			}
+
 
 			switch(i) {
 				case 0:
-					player.AddComponent<NotContaminedAction>();
 					player.transform.position = VectorData._player1Position;
 				break;
 
 				case 1:
-					player.AddComponent<NotContaminedAction>();
 					player.transform.position = VectorData._player2Position;
 				break;
 
 				case 2:
-					player.AddComponent<NotContaminedAction>();
 					player.transform.position = VectorData._player3Position;
 				break;
 
 				case 3:
-					p.IsContamined = true;
-					player.AddComponent<ColdAction>();
 					player.transform.position = VectorData._player4Position;
 				break;
 

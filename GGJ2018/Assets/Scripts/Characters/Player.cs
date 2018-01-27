@@ -9,13 +9,13 @@ public class Player : MonoBehaviour {
 
 	public bool _allowInput = true;
 
-	public bool IsContamined {
-		get {return _isContamined;}
-		set {_isContamined = value;}
-	}
-
 	public int PlayerNumber {
 		get { return _playerNumber;}
 		set { _playerNumber = value;}
+	}
+
+	public void SetIsContamined(bool p_isSick, string p_newMaterial = ResourcesData._notContaminedMaterial) {
+		_isContamined = p_isSick;
+		gameObject.GetComponent<MeshRenderer>().material = Resources.Load<Material>(p_newMaterial);
 	}
 }
