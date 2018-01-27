@@ -47,6 +47,9 @@ public class Cold : Illness {
 			yield return new WaitForEndOfFrame ();
 		}
 
+		p_camera.transform.position = finalPosition;
+		p_camera.transform.eulerAngles = finalEulerAngles;
+
 		GameManager.Instance.ChangeGameState (ENUM_GAMESTATE.COUNTDOWN);
 	}
 }
