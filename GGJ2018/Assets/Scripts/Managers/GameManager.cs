@@ -193,7 +193,6 @@ public class GameManager : Singleton<GameManager> {
 
 		for (int i = 0; i < _players.Length; ++i) {
 			Player player = GetPlayer(i);
-			Debug.Log ("--- new score[" + player.PlayerNumber + "] : " + player.Score);
 		}
 
 		//Display score
@@ -282,15 +281,15 @@ public class GameManager : Singleton<GameManager> {
 
 		for (int i = 1; i < _players.Length; ++i) {
 			float currentPlayerScore = _players[i].GetComponent<Player> ().Score;
-			Debug.Log (i + ": " + currentPlayerScore + " / " + score);
 
 			if (currentPlayerScore > score) {
 				score = currentPlayerScore;
 				indexWinner = i;
 			}
 		}
+
 		_winner = indexWinner;
-		Debug.Log ("---Winner: " + indexWinner);
+
 		foreach (Text text in _finalScorePanel.GetComponentsInChildren<Text>()) {
 			if (text.gameObject.name == "WinnerScore") {
 				text.text = "Score: " + score;
