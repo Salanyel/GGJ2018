@@ -2,5 +2,5 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class VectorData{
+public class HookForSpawn : MonoBehaviour {
 }
