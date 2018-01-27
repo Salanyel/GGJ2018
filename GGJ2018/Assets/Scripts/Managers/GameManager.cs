@@ -95,6 +95,7 @@ public class GameManager : Singleton<GameManager> {
 			player.name = "Player" + (i+1).ToString();
 			Rigidbody rigidbody = player.AddComponent<Rigidbody>();
 			rigidbody.isKinematic = false;
+			player.tag = "Players";
 
 			Player p = player.AddComponent<Player>();
 			p.PlayerNumber = i + 1;

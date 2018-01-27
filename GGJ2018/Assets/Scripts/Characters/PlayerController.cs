@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private Player _player;
     private Rigidbody _rigidbody;
 
+    Dictionary<string, Vector3> elevatorTranslation;
+
     void Awake()
     {
         _player = GetComponent<Player>();
@@ -25,6 +27,19 @@ public class PlayerController : MonoBehaviour
         _VerticalAxis = InputData._Vertical + _playerNumber.ToString();
 
         _rigidbody = GetComponent<Rigidbody>();
+        elevatorTranslation = new Dictionary<string, Vector3>();
+    }
+
+    public void AddElevator(string _name, Vector3 force){
+        if(!elevatorTranslation.ContainsKey(_name)){
+            elevatorTranslation.Add(_name, force);
+        }
+    }
+
+    public void RemoveElevator(string _name){
+        if(elevatorTranslation.ContainsKey(_name)){
+            elevatorTranslation.Remove(_name);
+        }
     }
 
     void Update()
@@ -38,6 +53,10 @@ public class PlayerController : MonoBehaviour
             transform.Translate(direction, Space.World);
             if(direction != Vector3.zero){
                 transform.rotation = Quaternion.LookRotation(direction);
+            }
+
+            foreach(KeyValuePair<string, Vector3> el in elevatorTranslation){
+                transform.Translate(el.Value * Time.deltaTime, Space.World);
             }
         }
 
