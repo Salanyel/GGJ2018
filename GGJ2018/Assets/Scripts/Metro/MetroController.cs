@@ -20,6 +20,10 @@ public class MetroController : MonoBehaviour {
 
 	private Animator _animator;
 
+	public Animator animator {
+		get {return _animator;}
+	}
+
 	private Vector3 _initPosition;
 	public Vector3 _stationPosition;
 	public Vector3 _exitPosition;
@@ -29,6 +33,8 @@ public class MetroController : MonoBehaviour {
 	public bool _toStation = false;
 	public bool _toExit = false;
 
+	public MetroManager _metroManager;
+
 	void Start () {
 		
 		_animator = GetComponent<Animator>();
@@ -37,11 +43,11 @@ public class MetroController : MonoBehaviour {
 		_timerLimit = Time.time + 10.0f;
 
 		_DoorBlocker.SetActive(false);
+
 	}
 	
 	void Update () {
 
-		//transform.Translate(transform.right *_metroSpeed * Time.deltaTime, Space.World);
 		if (_toStation) {
 			transform.position = Vector3.Lerp(_initPosition, _stationPosition, _lerpPosition);
 		}
@@ -59,6 +65,7 @@ public class MetroController : MonoBehaviour {
 				_isDoorOpened = false;
 			 }
 		}
+
 	}
 
 	public void ResetPosition () {
@@ -74,12 +81,14 @@ public class MetroController : MonoBehaviour {
 		if (_collider.GetComponent<Player>()) {
 			_animator.SetBool("IsSomeoneInside", true);
 			_isSomeoneInside = true;
+			_metroManager.IsOccupied(true);
 		}
 	}
 
 	public void OnTriggerExit () {
 		_animator.SetBool("IsSomeoneInside", false);
 		_isSomeoneInside = false;
+		_metroManager.IsOccupied(false);
 	}
 
 	public void StartWaitTimer () {
