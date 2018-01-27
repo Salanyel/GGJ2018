@@ -111,7 +111,8 @@ public class GameManager : Singleton<GameManager> {
 
 			Player p = player.AddComponent<Player>();
 			p.PlayerNumber = i + 1;
-
+			player.AddComponent<PlayerController>();
+			
 			player.AddComponent<Pusher>();
 
 			p.SetIsContamined(false);
@@ -126,7 +127,7 @@ public class GameManager : Singleton<GameManager> {
 			}
 
 			player.GetComponent<PlayerActions>().SetActionKey(i + 1);
-			player.AddComponent<PlayerController>();
+			
 			_players[i] = player;
 
 			Instantiate(_scoringPrefab).transform.SetParent(_ScoringRecap.transform);

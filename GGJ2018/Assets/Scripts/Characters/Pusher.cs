@@ -5,8 +5,7 @@ using UnityEngine;
 public class Pusher : MonoBehaviour {
 
 	public float pushDistance = 4f;
-	public float pushTimeLength = .5f;
-
+	
 	Vector3 _pushVector;
 	bool _doPush = false;
 	float stopPushTime;
@@ -17,13 +16,13 @@ public class Pusher : MonoBehaviour {
 		_player = GetComponent<Player>();
 	}
 
-	public void Push(Vector3 pushVector){
+	public void Push(Vector3 pushVector, float _length = .5f){
 		//block le joueur
 		_player._allowInput = false;
 		//deplace le joueur
 		_pushVector = pushVector * pushDistance;
 		_doPush = true;
-		stopPushTime = Time.time + pushTimeLength;
+		stopPushTime = Time.time + _length;
 
 	}
 
