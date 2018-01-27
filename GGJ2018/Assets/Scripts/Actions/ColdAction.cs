@@ -89,7 +89,5 @@ public class ColdAction : PlayerActions {
 
 	IEnumerator HideDisplay() {
 		yield return new WaitForSeconds(2f);
-
-		_indicator.SetActive(false);
 	}
 }
