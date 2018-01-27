@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
             if(direction != Vector3.zero){
                 transform.rotation = Quaternion.LookRotation(direction);
             }
-            transform.rotation = Quaternion.LookRotation(direction);
         }
 
 		Debug.DrawRay(transform.position, transform.forward * 2f);
