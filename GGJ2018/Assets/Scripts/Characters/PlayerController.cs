@@ -8,14 +8,17 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
 	private float _playerSpeed = 5.0f;
 
-	private string _HorizontalAxis = "Horizontal";
-	private string _VerticalAxis = "Vertical";
+	private string _HorizontalAxis;
+	private string _VerticalAxis;
 	
-	void Start () {
-		
-		int _playerNumber = this.GetComponent<Player>().PlayerNumber;
-		_HorizontalAxis += _playerNumber.ToString();
-		_VerticalAxis += _playerNumber.ToString();
+	private Player _player;
+
+	void Awake() {
+		_player = GetComponent<Player>();
+
+		int _playerNumber = _player.PlayerNumber;
+		_HorizontalAxis = InputData._Horizontal + _playerNumber.ToString();
+		_VerticalAxis = InputData._Vertical + _playerNumber.ToString();
 	}
 
 	void Update () {

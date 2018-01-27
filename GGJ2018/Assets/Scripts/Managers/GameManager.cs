@@ -76,7 +76,7 @@ public class GameManager : Singleton<GameManager> {
 			GameObject player;
 			player = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			Player p = player.AddComponent<Player>();
-			p.PlayerNumber = i;
+			p.PlayerNumber = i + 1;
 
 			switch(i) {
 				case 0:
@@ -106,6 +106,7 @@ public class GameManager : Singleton<GameManager> {
 			}
 
 			player.GetComponent<PlayerActions>().SetActionKey(i + 1);
+			player.AddComponent<PlayerController>();
 			_players[i] = player;
 		}
 	}
