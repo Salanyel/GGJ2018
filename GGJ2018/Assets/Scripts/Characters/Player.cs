@@ -22,6 +22,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void SetIsContamined(bool p_isSick) {
+		if(p_isSick == _isContamined) return;
 		_isContamined = p_isSick;
 
 		if (_isContamined) {
