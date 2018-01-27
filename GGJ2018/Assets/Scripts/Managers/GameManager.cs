@@ -49,7 +49,6 @@ public class GameManager : Singleton<GameManager> {
 	void Awake() {
 		_game = gameObject.AddComponent<Cold>();
 		_illness = ENUM_ILLNESS.COLD;
-		ChangeGameState(ENUM_GAMESTATE.LOADING);
 		_timeBeforeEndOfTheRound = _SecondsForGame;
 		_chronometerRenderer = GameObject.FindGameObjectWithTag(Tags._chronometer).GetComponent<TextMesh>();
 		_finalScorePanel = GameObject.FindGameObjectWithTag(Tags._finalScorePanel);
@@ -59,6 +58,7 @@ public class GameManager : Singleton<GameManager> {
 	void Start() {
 		_finalScorePanel.SetActive (false);
 		SetAllScoreElementsTransparency (0);
+		ChangeGameState(ENUM_GAMESTATE.LOADING);
 	}
 
 	void Update(){
@@ -87,13 +87,41 @@ public class GameManager : Singleton<GameManager> {
 
         switch (_gameState)
         {
+		case ENUM_GAMESTATE.LOADINGLEVEL:
+			Debug.LogError ("Do loading level behaviour");
+			ChangeGameState (ENUM_GAMESTATE.LOADING);
+			break;
+
 		case ENUM_GAMESTATE.LOADING:
+			_timeBeforeEndOfTheRound = _SecondsForGame;
 			LoadSpawnPosition();
 			LoadPlayers();
-			ChangeGameState(ENUM_GAMESTATE.PLAYING);
+			SetAllPlayersMovementAllowance (false);
+			ChangeGameState(ENUM_GAMESTATE.CINEMATICS);
+			break;
+
+		case ENUM_GAMESTATE.CINEMATICS:
+			int indexSick = 0;
+
+			for (int i = 0; i < _players.Length; ++i) {
+				if (GetPlayer (i)._isContamined) {
+					indexSick = i;
+					break;
+				}
+			}
+
+			SetCamera (indexSick);
+			_game.LaunchCinematic (GameObject.FindGameObjectWithTag (Tags.m_mainCamera), _cameraForScoring.transform.position, _cameraForScoring.transform.eulerAngles);
+			ChangeGameState (ENUM_GAMESTATE.COUNTDOWN);
+			break;
+
+		case ENUM_GAMESTATE.COUNTDOWN:
+			Debug.LogError ("Do countdown behaviour");
+			ChangeGameState (ENUM_GAMESTATE.PLAYING);
 			break;
 
 		case ENUM_GAMESTATE.PLAYING:
+			_ScoringRecap.SetActive (true);
 			SetAllPlayersMovementAllowance (true);
 			break;
 
@@ -105,7 +133,21 @@ public class GameManager : Singleton<GameManager> {
 			break;
 
 		case ENUM_GAMESTATE.SCORING:
+			_ScoringRecap.SetActive (false);
 			StartCoroutine(FadeInScorePanel());
+			break;
+
+		case ENUM_GAMESTATE.RESET:
+			_finalScorePanel.SetActive (false);
+
+			foreach (Text score in _playerScore) {
+				score.text = "0000";
+			}
+
+			foreach (GameObject player in _players) {
+				Destroy (player);
+			}
+			ChangeGameState(ENUM_GAMESTATE.LOADING);
 			break;
 
             default:
@@ -121,7 +163,6 @@ public class GameManager : Singleton<GameManager> {
 
 		foreach(HookForSpawn spawn in FindObjectsOfType<HookForSpawn>()) {
 			_spawnPositions[index] = spawn.transform.position;
-			Destroy(spawn.gameObject);
 			index++;
 		}
 	}
@@ -296,8 +337,12 @@ public class GameManager : Singleton<GameManager> {
 	}
 
 	void SetCameraForWinner() {
-		GameObject winner = _players [_winner];
-		_cameraForScoring.transform.SetParent (winner.transform);
+		SetCamera (_winner);
+
+	}
+
+	void SetCamera(int p_index) {
+		_cameraForScoring.transform.SetParent (_players[p_index].transform);
 		_cameraForScoring.transform.localPosition = VectorData._cameraAvatarPosition;
 		_cameraForScoring.transform.localEulerAngles = VectorData._cameraAvatarEuler;
 	}
