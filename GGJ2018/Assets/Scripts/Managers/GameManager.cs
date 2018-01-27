@@ -79,6 +79,7 @@ public class GameManager : Singleton<GameManager> {
 			p.PlayerNumber = i + 1;
 			p.SetIsContamined(false);
 
+
 			switch(i) {
 				case 0:
 					player.AddComponent<NotContaminedAction>();
