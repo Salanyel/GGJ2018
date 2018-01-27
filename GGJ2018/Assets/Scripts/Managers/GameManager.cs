@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager> {
     private ENUM_GAMESTATE _gameState;
 	Illness _game;
 	GameObject[] _players;
+	string _pathForIllnessMaterial;
 
 	public GameObject[] AllPlayers {
 		get {return _players;}
@@ -73,7 +74,7 @@ public class GameManager : Singleton<GameManager> {
 
 	void LoadPlayers() {
 		_players = new GameObject[4];
-
+		_pathForIllnessMaterial = ResourcesData._coldMaterial;
 		for (int i = 0; i < 4; ++i) {
 			GameObject player;
 			player = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -86,7 +87,7 @@ public class GameManager : Singleton<GameManager> {
 			p.SetIsContamined(false);
 
 			if (i == _illPlayerForTest) {
-				p.SetIsContamined(true, ResourcesData._coldMaterial);
+				p.SetIsContamined(true, _pathForIllnessMaterial);
 					player.AddComponent<ColdAction>();
 			} else {
 				player.AddComponent<NotContaminedAction>();
@@ -118,6 +119,15 @@ public class GameManager : Singleton<GameManager> {
 			player.GetComponent<PlayerActions>().SetActionKey(i + 1);
 			player.AddComponent<PlayerController>();
 			_players[i] = player;
+		}
+	}
+
+	public void ContaminedPlayer(GameObject p_player) {
+		foreach(GameObject player in _players) {
+			if (player == p_player) {
+				player.GetComponent<Player>().SetIsContamined(true, _pathForIllnessMaterial);
+				return;
+			}
 		}
 	}
 
