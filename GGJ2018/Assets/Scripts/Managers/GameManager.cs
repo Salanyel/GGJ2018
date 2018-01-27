@@ -49,7 +49,6 @@ public class GameManager : Singleton<GameManager> {
 	void Awake() {
 		_game = gameObject.AddComponent<Cold>();
 		_illness = ENUM_ILLNESS.COLD;
-		ChangeGameState(ENUM_GAMESTATE.LOADING);
 		_timeBeforeEndOfTheRound = _SecondsForGame;
 		_chronometerRenderer = GameObject.FindGameObjectWithTag(Tags._chronometer).GetComponent<TextMesh>();
 		_finalScorePanel = GameObject.FindGameObjectWithTag(Tags._finalScorePanel);
@@ -59,6 +58,7 @@ public class GameManager : Singleton<GameManager> {
 	void Start() {
 		_finalScorePanel.SetActive (false);
 		SetAllScoreElementsTransparency (0);
+		ChangeGameState(ENUM_GAMESTATE.LOADING);
 	}
 
 	void Update(){
@@ -90,7 +90,18 @@ public class GameManager : Singleton<GameManager> {
 		case ENUM_GAMESTATE.LOADING:
 			LoadSpawnPosition();
 			LoadPlayers();
-			ChangeGameState(ENUM_GAMESTATE.PLAYING);
+			ChangeGameState(ENUM_GAMESTATE.CINEMATICS);
+			break;
+
+		case ENUM_GAMESTATE.CINEMATICS:
+			Debug.Log ("--- Launching");
+			_game.LaunchCinematic (GameObject.FindGameObjectWithTag (Tags.m_mainCamera));
+			ChangeGameState (ENUM_GAMESTATE.CINEMATICS);
+			break;
+
+		case ENUM_GAMESTATE.COUNTDOWN:
+			Debug.LogError ("Do countdown behaviour");
+			ChangeGameState (ENUM_GAMESTATE.PLAYING);
 			break;
 
 		case ENUM_GAMESTATE.PLAYING:
