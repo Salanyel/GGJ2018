@@ -32,7 +32,7 @@ public class Pusher : MonoBehaviour {
 			//deplace le joueur
 			Debug.Log("boooo, im pushed");
 			transform.Translate(_pushVector * Time.deltaTime, Space.World);
-		}else{
+		}else if (_doPush && Time.time >= stopPushTime) {
 			_doPush = false;
 			_player._allowInput = true;
 		}
