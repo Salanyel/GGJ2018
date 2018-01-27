@@ -123,7 +123,6 @@ public class GameManager : Singleton<GameManager> {
 			player.transform.position = _spawnPositions[i];
 
 			if (i == _illPlayerForTest) {
-				p.SetIsContamined(true, _pathForIllnessMaterial);
 					player.AddComponent<ColdAction>();
 			} else {
 				player.AddComponent<NotContaminedAction>();
@@ -134,8 +133,14 @@ public class GameManager : Singleton<GameManager> {
 			_players[i] = player;
 
 			Instantiate(_scoringPrefab).transform.SetParent(_ScoringRecap.transform);
-
 		}
+
+		_players[0].GetComponent<Player>().SetMaterial(ResourcesData._notContaminedMaterial);
+		_players[1].GetComponent<Player>().SetMaterial(ResourcesData._player2Material);
+		_players[2].GetComponent<Player>().SetMaterial(ResourcesData._player3Material);
+		_players[3].GetComponent<Player>().SetMaterial(ResourcesData._player4Material);
+
+		_players[_illPlayerForTest].GetComponent<Player>().SetIsContamined(true, _pathForIllnessMaterial);
 	}
 
 	public void ContaminedPlayer(GameObject p_player) {
