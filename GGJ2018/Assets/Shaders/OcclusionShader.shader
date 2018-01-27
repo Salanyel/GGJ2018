@@ -3,7 +3,7 @@
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_OccluTex ("Occlusion map", 2D) = "white" {}
-		_OccluStrengh("Occlusion strengh", float) = 1
+		_OccluStrengh("Occlusion strengh", Range(0,1)) = 0.5
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
 	}
@@ -20,7 +20,7 @@
 
 		sampler2D _MainTex;
 		sampler2D _OccluTex;
-		float _OccluStrengh;
+		half _OccluStrengh;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -42,7 +42,7 @@
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			fixed4 occlu = tex2D(_OccluTex, IN.uv_MainTex);
 
-			o.Albedo = c.rgb * occlu.rgb * _OccluStrengh;
+			o.Albedo = lerp(c.rgb, c.rgb * occlu.rgb, _OccluStrengh);
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
