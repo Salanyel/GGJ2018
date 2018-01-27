@@ -79,20 +79,6 @@ public class ColdAction : PlayerActions {
 
 	}
 
-	override protected void DoAction() {
-		_chargeAmount += chargeSpeed * Time.deltaTime;
-		_chargeAmount = Mathf.Clamp01(_chargeAmount);
-		_playerController.speedMultiplicator = .5f;
-
-	}
-
-	override protected void DoReleaseAction(){
-		_chargeAmount = 0f;
-		_playerController.speedMultiplicator = 1f;
-		Fire();
-		GetComponent<Pusher>().Push(-transform.forward,.2f);
-	}
-
 	IEnumerator HideDisplay() {
 		yield return new WaitForSeconds(2f);
 

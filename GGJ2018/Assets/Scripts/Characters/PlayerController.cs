@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_player._allowInput){
             var x = Input.GetAxis(_HorizontalAxis) * Time.deltaTime * _playerSpeed * speedMultiplicator;
-            var z = Input.GetAxis(_VerticalAxis) * Time.deltaTime * _playerSpeed * speedMultiplicator;
+            var z = Input.GetAxis(_VerticalAxis) * Time.deltaTime * _playerSpeed;
 
             Vector3 direction = new Vector3(x, 0.0f, z);
 
