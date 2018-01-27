@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class NotContaminedAction : PlayerActions {
 
-	public float coolDownTime = 1f;
-	float lastAction;
 	public float actionPushRange = 2f;
 	public LayerMask collisionMask;
 
 	override protected void Awake() {
-		_actionKey = InputData._Action;
 		lastAction = Time.time - coolDownTime;
+		coolDownTime = 1f;
 	}
 
-	void DoPushAction(){
+	override protected void DoAction(){
 		RaycastHit hitInfo;
 		Physics.Raycast(transform.position, transform.forward, out hitInfo, actionPushRange);
 		//push that guy
@@ -27,12 +25,4 @@ public class NotContaminedAction : PlayerActions {
 
 	}
 
-	override public void Action() {
-		//verifie le cooldown
-		if(Time.time >= lastAction + coolDownTime){
-			lastAction = Time.time;
-
-			DoPushAction();
-		}
-	}
 }
