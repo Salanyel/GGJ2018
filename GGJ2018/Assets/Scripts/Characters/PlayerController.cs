@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.freezeRotation = true;
+        
         if (_player._allowInput){
             var x = Input.GetAxis(_HorizontalAxis) * Time.deltaTime * _playerSpeed * speedMultiplicator;
             var z = Input.GetAxis(_VerticalAxis) * Time.deltaTime * _playerSpeed;

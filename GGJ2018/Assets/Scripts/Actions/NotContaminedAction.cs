@@ -2,34 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NotContaminedAction : PlayerActions {
+public class NotContaminedAction : PlayerActions
+{
 
-	public float actionPushRange = 2f;
-	public LayerMask collisionMask;
+    public float actionPushRange = 2f;
+    public LayerMask collisionMask;
 
-	override protected void Awake() {
-		lastAction = Time.time - coolDownTime;
-		coolDownTime = 1f;
-	}
+    override protected void Awake()
+    {
+        lastAction = Time.time - coolDownTime;
+        coolDownTime = .5f;
+    }
 
-	override protected void DoAction(){
-		RaycastHit hitInfo;
-		Physics.Raycast(transform.position, transform.forward, out hitInfo, actionPushRange);
-		//push that guy
-		if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
-			hitInfo.collider.GetComponent<Pusher>().Push(transform.forward);
-			Debug.Log(hitInfo.collider.name);
-		}else{
+    override protected void DoAction()
+    {
+        RaycastHit hitInfo;
+        Physics.Raycast(transform.position, transform.forward, out hitInfo, actionPushRange);
+        //push that guy
+        if (hitInfo.collider != null && hitInfo.collider.gameObject != gameObject)
+        {
+            if (hitInfo.collider.CompareTag(Tags._players))
+            {
+                hitInfo.collider.GetComponent<Pusher>().Push(transform.forward);
+            }
+            else
+            {
+                Rigidbody rigidbody = hitInfo.collider.GetComponent<Rigidbody>();
+                if (rigidbody != null) { 
+				float range = .2f;
+                Vector3 randv = new Vector3(
+                Random.Range(-range, range),
+                Random.Range(-range, range),
+                Random.Range(-range, range)
+            	);
+                rigidbody.AddForce((transform.forward + randv) * 18f, ForceMode.Impulse);
+            }
+        }
+
+        Debug.Log(hitInfo.collider.name);
+    }else{
 			Debug.Log("Coup dans le vide");
 		}
 
 	}
 
-	override protected void DoReleaseAction(){
-		
-	}
+	override protected void DoReleaseAction()
+{
 
-	override protected void DoBehaviour(){
-	}
+}
+
+override protected void DoBehaviour()
+{
+}
 
 }
