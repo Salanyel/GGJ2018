@@ -16,6 +16,10 @@ public class Player : MonoBehaviour {
 
 	public void SetIsContamined(bool p_isSick, string p_newMaterial = ResourcesData._notContaminedMaterial) {
 		_isContamined = p_isSick;
+		SetMaterial (p_newMaterial);
+	}
+
+	public void SetMaterial(string p_newMaterial) {
 		gameObject.GetComponent<MeshRenderer>().material = Resources.Load<Material>(p_newMaterial);
 	}
 }
