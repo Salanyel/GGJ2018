@@ -68,9 +68,9 @@ public class GameManager : Singleton<GameManager> {
 		if (_gameState == ENUM_GAMESTATE.PLAYING) {
 			if (_game.IsGameFinished () || _timeBeforeEndOfTheRound < 1f) {
 				ChangeGameState (ENUM_GAMESTATE.END);
-				UpdateScore ();
 			} else {
 				UpdateChronometer();
+				UpdateScore ();
 			}
 		}
 	}
@@ -170,6 +170,7 @@ public class GameManager : Singleton<GameManager> {
 		_players[3].GetComponent<Player>().SetMaterial(ResourcesData._player4Material);
 
 		_players[_illPlayerForTest].GetComponent<Player>().SetIsContamined(true, _pathForIllnessMaterial);
+		_players [_illPlayerForTest].GetComponent<Player> ().Score = 3 * 1064;
 	}
 
 	void UpdateScore() {
@@ -177,27 +178,27 @@ public class GameManager : Singleton<GameManager> {
 
 		//Detects the number of contamined player
 		for (int i = 0; i < _players.Length; ++i) {
-			if (_players [i].GetComponent<Player> ()._isContamined) {
+			if (GetPlayer(i)._isContamined) {
 				numberOfInfected++;
 			}
 		}
 
 		//Update the score of the pure players
 		for (int i = 0; i < _players.Length; ++i) {
-			Player player = _players [i].GetComponent<Player> ();
+			Player player = GetPlayer(i);
 			if (!player._isContamined) {
 				player.Score += 1 * numberOfInfected * 2;
 			}
 		}
 
 		for (int i = 0; i < _players.Length; ++i) {
-			Player player = _players [i].GetComponent<Player> ();
+			Player player = GetPlayer(i);
 			Debug.Log ("--- new score[" + player.PlayerNumber + "] : " + player.Score);
 		}
 
 		//Display score
 		for (int i = 0; i < _players.Length; ++i) {
-			_playerScore [i].text = _players [i].GetComponent<Player> ().Score.ToString();
+			_playerScore [i].text = GetPlayer(i).Score.ToString();
 		}
 
 	}
@@ -210,6 +211,14 @@ public class GameManager : Singleton<GameManager> {
 				return;
 			}
 		}
+	}
+
+	Player GetPlayer(int p_index) {
+		return _players [p_index].GetComponent<Player>();
+	}
+
+	public void UpdateScoreSickPlayer(int p_index) {
+		GetPlayer(p_index).Score += Mathf.Floor(_timeBeforeEndOfTheRound * 10);
 	}
 
 	void ResetPlayerAction(GameObject p_player) {
@@ -281,6 +290,7 @@ public class GameManager : Singleton<GameManager> {
 			}
 		}
 		_winner = indexWinner;
+		Debug.Log ("---Winner: " + indexWinner);
 		foreach (Text text in _finalScorePanel.GetComponentsInChildren<Text>()) {
 			if (text.gameObject.name == "WinnerScore") {
 				text.text = "Score: " + score;

@@ -37,6 +37,7 @@ public class ColdAction : PlayerActions {
 
 		foreach(GameObject g in SendRay()){
 			GameManager.Instance.ContaminedPlayer(g);
+			GameManager.Instance.UpdateScoreSickPlayer (GetComponent<Player> ().PlayerNumber - 1);
 		}
 	}
 
