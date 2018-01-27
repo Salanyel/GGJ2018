@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _playerSpeed = 5.0f;
 
+    public float speedMultiplicator = 1f;
+
     private string _HorizontalAxis;
     private string _VerticalAxis;
 
@@ -45,8 +47,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (_player._allowInput){
-            var x = Input.GetAxis(_HorizontalAxis) * Time.deltaTime * _playerSpeed;
-            var z = Input.GetAxis(_VerticalAxis) * Time.deltaTime * _playerSpeed;
+            var x = Input.GetAxis(_HorizontalAxis) * Time.deltaTime * _playerSpeed * speedMultiplicator;
+            var z = Input.GetAxis(_VerticalAxis) * Time.deltaTime * _playerSpeed * speedMultiplicator;
 
             Vector3 direction = new Vector3(x, 0.0f, z);
 

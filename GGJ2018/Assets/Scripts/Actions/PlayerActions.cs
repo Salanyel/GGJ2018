@@ -14,6 +14,7 @@ public abstract class PlayerActions : MonoBehaviour {
 	#endregion
 
 	protected abstract void DoAction();
+	protected abstract void DoReleaseAction();
 	protected abstract void Awake();
 
 	protected void Action() {
@@ -25,6 +26,10 @@ public abstract class PlayerActions : MonoBehaviour {
 		}
 	}
 
+	protected void ReleaseAction(){
+		DoReleaseAction();
+	}
+
 	void Update() {
 		
 		if (!SecurityIsOk()) {
@@ -33,6 +38,10 @@ public abstract class PlayerActions : MonoBehaviour {
 
 		if (Input.GetButtonDown(_actionKey)) {
 			Action();
+		}
+
+		if(Input.GetButtonUp(_actionKey)){
+			ReleaseAction();
 		}
 	}
 
