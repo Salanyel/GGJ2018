@@ -47,7 +47,10 @@ public class ColdAction : PlayerActions {
 			Vector3 direction = transform.forward;
 			direction = Quaternion.AngleAxis(attackAngle * (float)i/8f - (attackAngle/2f) ,Vector3.up) * direction;
 
-			Physics.Raycast(transform.position, direction * _actionRange * _chargeAmount, out hitInfo, _actionRange * _chargeAmount);
+			Vector3 position = transform.position;
+			position.y += 0.15f;
+
+			Physics.Raycast(position, direction * _actionRange * _chargeAmount, out hitInfo, _actionRange * _chargeAmount);
 			
 			Debug.DrawRay(transform.position, direction * _actionRange * _chargeAmount,Color.yellow,4f);
 			if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
