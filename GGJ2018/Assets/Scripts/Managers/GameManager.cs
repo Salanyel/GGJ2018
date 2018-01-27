@@ -8,15 +8,25 @@ public class GameManager : Singleton<GameManager> {
     #region Public_Attributes
 
 	public int _illPlayerForTest;
+	public GameObject _charactersBodyPrefab;
+	public float _SecondsForGame;
+	public GameObject _scoringPrefab;
 
     #endregion
 
     #region Private_Attributes
 
     private ENUM_GAMESTATE _gameState;
+	private ENUM_ILLNESS _illness;
+
 	Illness _game;
 	GameObject[] _players;
 	Vector3[] _spawnPositions;
+	
+	float _timeBeforeEndOfTheRound;
+	TextMesh _chronometerRenderer;
+
+	public GameObject _ScoringRecap;
 
 	string _pathForIllnessMaterial;
 
@@ -30,7 +40,10 @@ public class GameManager : Singleton<GameManager> {
 	
 	void Awake() {
 		_game = gameObject.AddComponent<Cold>();
+		_illness = ENUM_ILLNESS.COLD;
 		ChangeGameState(ENUM_GAMESTATE.LOADING);
+		_timeBeforeEndOfTheRound = _SecondsForGame;
+		_chronometerRenderer = GameObject.FindGameObjectWithTag(Tags._chronometer).GetComponent<TextMesh>();
 	}	
 
 	void Update(){
@@ -39,6 +52,8 @@ public class GameManager : Singleton<GameManager> {
 			if (_game.IsGameFinished()) {
 				ChangeGameState(ENUM_GAMESTATE.END);
 			}
+
+			UpdateChronometer();
 		}
 	}
 
@@ -91,11 +106,8 @@ public class GameManager : Singleton<GameManager> {
 		_pathForIllnessMaterial = ResourcesData._coldMaterial;
 		for (int i = 0; i < 4; ++i) {
 			GameObject player;
-			player = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			player = Instantiate(_charactersBodyPrefab);
 			player.name = "Player" + (i+1).ToString();
-			Rigidbody rigidbody = player.AddComponent<Rigidbody>();
-			rigidbody.isKinematic = false;
-			player.tag = "Players";
 
 			Player p = player.AddComponent<Player>();
 			p.PlayerNumber = i + 1;
@@ -116,6 +128,9 @@ public class GameManager : Singleton<GameManager> {
 			player.GetComponent<PlayerActions>().SetActionKey(i + 1);
 			player.AddComponent<PlayerController>();
 			_players[i] = player;
+
+			Instantiate(_scoringPrefab).transform.SetParent(_ScoringRecap.transform);
+
 		}
 	}
 
@@ -123,9 +138,42 @@ public class GameManager : Singleton<GameManager> {
 		foreach(GameObject player in _players) {
 			if (player == p_player) {
 				player.GetComponent<Player>().SetIsContamined(true, _pathForIllnessMaterial);
+				ResetPlayerAction(player);
 				return;
 			}
 		}
+	}
+
+	void ResetPlayerAction(GameObject p_player) {
+		switch (_illness) {
+			case ENUM_ILLNESS.COLD:
+				p_player.AddComponent<ColdAction>().SetActionKey(p_player.GetComponent<Player>().PlayerNumber);
+				break;
+
+		default:
+			Debug.LogError("--- Action for illness " + _illness + " not set");
+			break;
+		}
+	}
+
+	void UpdateChronometer() {
+		_timeBeforeEndOfTheRound -= Time.deltaTime;
+
+		string minutes = "";
+		string seconds = "";
+
+		if (_timeBeforeEndOfTheRound / 60 < 10) {
+			minutes = "0";
+		}
+
+		if (_timeBeforeEndOfTheRound % 60 < 10) {
+			seconds = "0";
+		}
+
+		minutes += Mathf.Floor(_timeBeforeEndOfTheRound / 60);
+		seconds += Mathf.Floor(_timeBeforeEndOfTheRound % 60);
+
+		_chronometerRenderer.text = minutes + ":" + seconds;
 	}
 
     #endregion

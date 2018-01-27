@@ -9,3 +9,8 @@ public enum ENUM_GAMESTATE
 	END,
 	SCORING
 };
+
+public enum ENUM_ILLNESS {
+	NONE = 0,
+	COLD = 1
+}
