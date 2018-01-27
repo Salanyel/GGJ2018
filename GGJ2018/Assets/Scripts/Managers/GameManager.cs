@@ -101,6 +101,7 @@ public class GameManager : Singleton<GameManager> {
 
 		case ENUM_GAMESTATE.END:
 			SetAllPlayersMovementAllowance (false);
+			_ScoringRecap.SetActive (false);
 			SetWinnerAndScore ();
 			SetCameraForWinner ();
 			ChangeGameState(ENUM_GAMESTATE.SCORING);
