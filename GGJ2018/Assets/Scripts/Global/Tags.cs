@@ -14,6 +14,8 @@ public static class Tags {
     public const string m_gameController = "GameController";
 	public const string _chronometer = "Chronometer";
 	public const string _scoringRecap = "ScoringRecap";
+	public const string _finalScorePanel = "FinalScorePanel";
+	public const string _cameraForScoring = "CameraForScoring";
 
     #endregion
 
