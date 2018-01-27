@@ -77,6 +77,7 @@ public class GameManager : Singleton<GameManager> {
 		for (int i = 0; i < 4; ++i) {
 			GameObject player;
 			player = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			player.name = "Player" + (i+1).ToString();
 			Player p = player.AddComponent<Player>();
 			p.PlayerNumber = i + 1;
 

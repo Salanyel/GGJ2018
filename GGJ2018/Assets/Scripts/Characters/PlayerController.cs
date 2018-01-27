@@ -34,5 +34,9 @@ public class PlayerController : MonoBehaviour
             transform.Translate(direction, Space.World);
             transform.rotation = Quaternion.LookRotation(direction);
         }
+
+		Debug.DrawRay(transform.position, transform.forward * 2f);
     }
+
+
 }
