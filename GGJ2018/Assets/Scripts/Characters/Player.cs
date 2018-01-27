@@ -21,12 +21,19 @@ public class Player : MonoBehaviour {
 		set { _playerNumber = value;}
 	}
 
-	public void SetIsContamined(bool p_isSick, string p_newMaterial = ResourcesData._notContaminedMaterial) {
+	public void SetIsContamined(bool p_isSick) {
 		_isContamined = p_isSick;
-		SetMaterial (p_newMaterial);
+
+		if (_isContamined) {
+			gameObject.GetComponentInChildren<MeshRenderer> ().materials [1].SetFloat (ResourcesData._shaderSickChannel, 1);
+		} else {
+			gameObject.GetComponentInChildren<MeshRenderer> ().materials [1].SetFloat (ResourcesData._shaderSickChannel, 0);
+		}
 	}
 
 	public void SetMaterial(string p_newMaterial) {
-		gameObject.GetComponent<MeshRenderer>().materials[1] = Resources.Load<Material>(p_newMaterial);
+		Material[] materials = gameObject.GetComponentInChildren<MeshRenderer>().materials;
+		materials[1] = Resources.Load<Material>(p_newMaterial);
+		gameObject.GetComponentInChildren<MeshRenderer> ().materials = materials;
 	}
 }

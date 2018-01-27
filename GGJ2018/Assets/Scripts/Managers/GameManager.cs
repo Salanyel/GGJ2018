@@ -30,8 +30,6 @@ public class GameManager : Singleton<GameManager> {
 	float _timeBeforeEndOfTheRound;
 	TextMesh _chronometerRenderer;
 
-	string _pathForIllnessMaterial;
-
 	int _winner;
 	GameObject _finalScorePanel;
 	GameObject _cameraForScoring;
@@ -131,7 +129,6 @@ public class GameManager : Singleton<GameManager> {
 	void LoadPlayers() {
 		_players = new GameObject[4];
 		_playerScore = new Text[4];
-		_pathForIllnessMaterial = ResourcesData._coldMaterial;
 
 		for (int i = 0; i < 4; ++i) {
 			GameObject player;
@@ -164,12 +161,12 @@ public class GameManager : Singleton<GameManager> {
 			_playerScore [i] = scoring.GetComponent<Text> ();
 		}
 
-		_players[0].GetComponent<Player>().SetMaterial(ResourcesData._notContaminedMaterial);
+		_players[0].GetComponent<Player>().SetMaterial(ResourcesData._player1Material);
 		_players[1].GetComponent<Player>().SetMaterial(ResourcesData._player2Material);
 		_players[2].GetComponent<Player>().SetMaterial(ResourcesData._player3Material);
 		_players[3].GetComponent<Player>().SetMaterial(ResourcesData._player4Material);
 
-		_players[_illPlayerForTest].GetComponent<Player>().SetIsContamined(true, _pathForIllnessMaterial);
+		_players[_illPlayerForTest].GetComponent<Player>().SetIsContamined(true);
 		_players [_illPlayerForTest].GetComponent<Player> ().Score = 3 * 1064;
 	}
 
@@ -206,7 +203,7 @@ public class GameManager : Singleton<GameManager> {
 	public void ContaminedPlayer(GameObject p_player) {
 		foreach(GameObject player in _players) {
 			if (player == p_player) {
-				player.GetComponent<Player>().SetIsContamined(true, _pathForIllnessMaterial);
+				player.GetComponent<Player>().SetIsContamined(true);
 				ResetPlayerAction(player);
 				return;
 			}

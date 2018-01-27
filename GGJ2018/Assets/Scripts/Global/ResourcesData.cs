@@ -4,10 +4,10 @@ using UnityEngine;
 
 public static class ResourcesData {
 
-	public const string _notContaminedMaterial = "Materials/NotContamined";
-	public const string _player2Material = "Materials/Player2";
-	public const string _player3Material = "Materials/Player3";
-	public const string _player4Material = "Materials/Player4";
+	public const string _player1Material = "Chara/CharaMaterial_01";
+	public const string _player2Material = "Chara/CharaMaterial_02";
+	public const string _player3Material = "Chara/CharaMaterial_03";
+	public const string _player4Material = "Chara/CharaMaterial_04";
 
-	public const string _coldMaterial = "Materials/Cold";
+	public const string _shaderSickChannel = "_Sickness";
 }

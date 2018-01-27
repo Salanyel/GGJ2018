@@ -52,9 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _illPlayerForTest: 0
-  _SecondsForGame: 2
+  _SecondsForGame: 60
   _scoringPrefab: {fileID: 1834185208424250, guid: fe2419ab841ee93498f5eea5a2c0cd52,
     type: 2}
-  _charactersBodyPrefab: {fileID: 1249894663249314, guid: 9cae233b6e6701c4ba754c9a6a430a0e,
+  _charactersBodyPrefab: {fileID: 1460330551472778, guid: 01dd87ba68b16794aa05237df27684b3,
     type: 2}
   _ScoringRecap: {fileID: 0}
