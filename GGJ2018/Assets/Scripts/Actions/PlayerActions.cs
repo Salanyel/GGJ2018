@@ -4,10 +4,26 @@ using UnityEngine;
 
 public abstract class PlayerActions : MonoBehaviour {
 
-	public string _actionKey = "";
+	#region Variables
 
+	public string _actionKey = "";		
+	public float coolDownTime = 1f;
+
+	protected float lastAction;
+
+	#endregion
+
+	protected abstract void DoAction();
 	protected abstract void Awake();
-	public abstract void Action();
+
+	protected void Action() {
+		//verifie le cooldown
+		if(Time.time >= lastAction + coolDownTime){
+			lastAction = Time.time;
+
+			DoAction();
+		}
+	}
 
 	void Update() {
 		
