@@ -77,6 +77,8 @@ public class GameManager : Singleton<GameManager> {
 			player = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			Player p = player.AddComponent<Player>();
 			p.PlayerNumber = i + 1;
+			p.SetIsContamined(false);
+
 
 			switch(i) {
 				case 0:
@@ -95,7 +97,7 @@ public class GameManager : Singleton<GameManager> {
 				break;
 
 				case 3:
-					p.IsContamined = true;
+					p.SetIsContamined(true, ResourcesData._coldMaterial);
 					player.AddComponent<ColdAction>();
 					player.transform.position = VectorData._player4Position;
 				break;
