@@ -10,6 +10,8 @@ public class MetroManager : MonoBehaviour {
 	
 	public bool _isOccupied = false;
 
+	public GameObject _colliderRail;
+
 	// Use this for initialization
 	void Awake () {
 		
@@ -25,6 +27,10 @@ public class MetroManager : MonoBehaviour {
 			mc.animator.SetBool("IsSomeoneInside", p_occupied);
 		}
 
+	}
+
+	public void InStation(bool p_isInStation) {
+		_colliderRail.SetActive(!p_isInStation);
 	}
 
 }

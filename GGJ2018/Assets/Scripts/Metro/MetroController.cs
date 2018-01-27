@@ -106,10 +106,12 @@ public class MetroController : MonoBehaviour {
 
 		Debug.Log("DoorBlocker Active");
 		_DoorBlocker.SetActive(true);
+		_metroManager.InStation(false);
 	}
 
 	public void OpenDoors () {
 		_DoorBlocker.SetActive(false);
+		_metroManager.InStation(true);
 	}
 
 	public void ToStation() {
