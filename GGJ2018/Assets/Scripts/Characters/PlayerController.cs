@@ -3,33 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Player))]
-public class PlayerController : MonoBehaviour {
-	
-	[SerializeField]
-	private float _playerSpeed = 5.0f;
+public class PlayerController : MonoBehaviour
+{
 
-	private string _HorizontalAxis;
-	private string _VerticalAxis;
-	
-	private Player _player;
+    [SerializeField]
+    private float _playerSpeed = 5.0f;
 
-	void Awake() {
-		_player = GetComponent<Player>();
+    private string _HorizontalAxis;
+    private string _VerticalAxis;
 
-		int _playerNumber = _player.PlayerNumber;
-		_HorizontalAxis = InputData._Horizontal + _playerNumber.ToString();
-		_VerticalAxis = InputData._Vertical + _playerNumber.ToString();
-	}
+    private Player _player;
 
-	void Update () {
+    void Awake()
+    {
+        _player = GetComponent<Player>();
 
-		var x = Input.GetAxis(_HorizontalAxis) * Time.deltaTime * _playerSpeed;
-        var z = Input.GetAxis(_VerticalAxis) * Time.deltaTime * _playerSpeed;
+        int _playerNumber = _player.PlayerNumber;
+        _HorizontalAxis = InputData._Horizontal + _playerNumber.ToString();
+        _VerticalAxis = InputData._Vertical + _playerNumber.ToString();
+    }
 
-		Vector3 direction = new Vector3(x,0.0f,z);
+    void Update()
+    {
+        if (_player._allowInput){
+            var x = Input.GetAxis(_HorizontalAxis) * Time.deltaTime * _playerSpeed;
+            var z = Input.GetAxis(_VerticalAxis) * Time.deltaTime * _playerSpeed;
 
-		transform.Translate(direction, Space.World);
-		transform.rotation = Quaternion.LookRotation(direction);
+            Vector3 direction = new Vector3(x, 0.0f, z);
 
-	}
+            transform.Translate(direction, Space.World);
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
+
+		Debug.DrawRay(transform.position, transform.forward * 2f);
+    }
+
+
 }

@@ -6,7 +6,7 @@ public class NotContaminedAction : PlayerActions {
 
 	public float coolDownTime = 1f;
 	float lastAction;
-	public float actionPushRange = 1f;
+	public float actionPushRange = 2f;
 	public LayerMask collisionMask;
 
 	override protected void Awake() {
@@ -16,9 +16,14 @@ public class NotContaminedAction : PlayerActions {
 
 	void DoPushAction(){
 		RaycastHit hitInfo;
-		Physics.Raycast(transform.position, transform.forward, out hitInfo, actionPushRange, collisionMask);
+		Physics.Raycast(transform.position, transform.forward, out hitInfo, actionPushRange);
 		//push that guy
-		hitInfo.collider.GetComponent<Pusher>().Push(transform.forward);
+		if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
+			hitInfo.collider.GetComponent<Pusher>().Push(transform.forward);
+			Debug.Log(hitInfo.collider.name);
+		}else{
+			Debug.Log("Coup dans le vide");
+		}
 
 	}
 
