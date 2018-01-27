@@ -79,6 +79,9 @@ public class GameManager : Singleton<GameManager> {
 			GameObject player;
 			player = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			player.name = "Player" + (i+1).ToString();
+			Rigidbody rigidbody = player.AddComponent<Rigidbody>();
+			rigidbody.isKinematic = false;
+
 			Player p = player.AddComponent<Player>();
 			p.PlayerNumber = i + 1;
 

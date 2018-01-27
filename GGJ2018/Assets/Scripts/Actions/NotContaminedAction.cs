@@ -22,5 +22,7 @@ public class NotContaminedAction : PlayerActions {
 		}else{
 			Debug.Log("Coup dans le vide");
 		}
+
 	}
+
 }
