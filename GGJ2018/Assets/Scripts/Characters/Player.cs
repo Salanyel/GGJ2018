@@ -9,6 +9,13 @@ public class Player : MonoBehaviour {
 
 	public bool _allowInput = true;
 
+	float _score;
+
+	public float Score {
+		get { return _score; }
+		set { _score = value; }
+	}
+
 	public int PlayerNumber {
 		get { return _playerNumber;}
 		set { _playerNumber = value;}
