@@ -29,9 +29,8 @@ public class Pusher : MonoBehaviour {
 	void Update(){
 		if(_doPush && Time.time < stopPushTime){
 			//deplace le joueur
-			Debug.Log("boooo, im pushed");
 			transform.Translate(_pushVector * Time.deltaTime, Space.World);
-		}else if (_doPush && Time.time >= stopPushTime) {
+		}else if (_doPush && Time.time >= stopPushTime && GameManager.Instance.GameState == ENUM_GAMESTATE.PLAYING) {
 			_doPush = false;
 			_player._allowInput = true;
 		}
