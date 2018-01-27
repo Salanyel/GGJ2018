@@ -10,7 +10,8 @@ public enum ENUM_GAMESTATE
 	COUNTDOWN,
 	PLAYING,
 	END,
-	SCORING
+	SCORING,
+	RESET
 };
 
 public enum ENUM_ILLNESS {

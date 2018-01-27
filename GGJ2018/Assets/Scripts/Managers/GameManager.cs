@@ -93,8 +93,10 @@ public class GameManager : Singleton<GameManager> {
 			break;
 
 		case ENUM_GAMESTATE.LOADING:
+			_timeBeforeEndOfTheRound = _SecondsForGame;
 			LoadSpawnPosition();
 			LoadPlayers();
+			SetAllPlayersMovementAllowance (false);
 			ChangeGameState(ENUM_GAMESTATE.CINEMATICS);
 			break;
 
@@ -119,6 +121,7 @@ public class GameManager : Singleton<GameManager> {
 			break;
 
 		case ENUM_GAMESTATE.PLAYING:
+			_ScoringRecap.SetActive (true);
 			SetAllPlayersMovementAllowance (true);
 			break;
 
@@ -130,7 +133,21 @@ public class GameManager : Singleton<GameManager> {
 			break;
 
 		case ENUM_GAMESTATE.SCORING:
+			_ScoringRecap.SetActive (false);
 			StartCoroutine(FadeInScorePanel());
+			break;
+
+		case ENUM_GAMESTATE.RESET:
+			_finalScorePanel.SetActive (false);
+
+			foreach (Text score in _playerScore) {
+				score.text = "0000";
+			}
+
+			foreach (GameObject player in _players) {
+				Destroy (player);
+			}
+			ChangeGameState(ENUM_GAMESTATE.LOADING);
 			break;
 
             default:
@@ -146,7 +163,6 @@ public class GameManager : Singleton<GameManager> {
 
 		foreach(HookForSpawn spawn in FindObjectsOfType<HookForSpawn>()) {
 			_spawnPositions[index] = spawn.transform.position;
-			Destroy(spawn.gameObject);
 			index++;
 		}
 	}
