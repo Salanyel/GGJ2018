@@ -7,9 +7,15 @@ public class ColdAction : PlayerActions {
 	private float _actionRange = 2f;
 	GameObject _indicator;
 
+	bool _isCharging;
+	float _chargeAmount;
+	public float chargeSpeed = 2f;
+
+	PlayerController _playerController;
+
 	override protected void Awake() {
 		lastAction = Time.time - coolDownTime;
-		coolDownTime = 2f;
+		coolDownTime = 0f;
 		
 		_indicator = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		Destroy(_indicator.GetComponent<BoxCollider>());
@@ -17,9 +23,14 @@ public class ColdAction : PlayerActions {
 		_indicator.transform.localPosition = new Vector3(0f, 0f, _actionRange - 0.5f);
 		_indicator.transform.localScale = new Vector3(0.1f, 0.1f, _actionRange);
 		_indicator.SetActive(false);
+
+		_playerController = gameObject.GetComponent<PlayerController>();
+
+		_isCharging = false;
+		_chargeAmount = 0f;
 	}
 
-	override protected void DoAction() {
+	void Fire(){
 		_indicator.SetActive(true);
 		StartCoroutine(HideDisplay());
 
@@ -29,6 +40,20 @@ public class ColdAction : PlayerActions {
 		if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
 			GameManager.Instance.ContaminedPlayer(hitInfo.collider.gameObject);
 		}
+	}
+
+	override protected void DoAction() {
+		_chargeAmount += chargeSpeed * Time.deltaTime;
+		_chargeAmount = Mathf.Clamp01(_chargeAmount);
+		_playerController.speedMultiplicator = .5f;
+
+	}
+
+	override protected void DoReleaseAction(){
+		_chargeAmount = 0f;
+		_playerController.speedMultiplicator = 1f;
+		Fire();
+		GetComponent<Pusher>().Push(-transform.forward,.2f);
 	}
 
 	IEnumerator HideDisplay() {
