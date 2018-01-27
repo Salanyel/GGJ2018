@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pusher : MonoBehaviour {
 
-	public float pushDistance = 1f;
+	public float pushDistance = 4f;
 	public float pushTimeLength = .5f;
 
 	Vector3 _pushVector;
@@ -34,6 +34,7 @@ public class Pusher : MonoBehaviour {
 			transform.Translate(_pushVector * Time.deltaTime, Space.World);
 		}else{
 			_doPush = false;
+			_player._allowInput = true;
 		}
 	}
 

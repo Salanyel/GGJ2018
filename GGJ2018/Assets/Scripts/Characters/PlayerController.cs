@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
 
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private string _VerticalAxis;
 
     private Player _player;
+    private Rigidbody _rigidbody;
 
     void Awake()
     {
@@ -21,6 +23,8 @@ public class PlayerController : MonoBehaviour
         int _playerNumber = _player.PlayerNumber;
         _HorizontalAxis = InputData._Horizontal + _playerNumber.ToString();
         _VerticalAxis = InputData._Vertical + _playerNumber.ToString();
+
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -32,7 +36,9 @@ public class PlayerController : MonoBehaviour
             Vector3 direction = new Vector3(x, 0.0f, z);
 
             transform.Translate(direction, Space.World);
-            transform.rotation = Quaternion.LookRotation(direction);
+            if(direction != Vector3.zero){
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
         }
 
 		Debug.DrawRay(transform.position, transform.forward * 2f);
