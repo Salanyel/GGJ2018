@@ -16,6 +16,7 @@ public abstract class PlayerActions : MonoBehaviour {
 	protected abstract void DoAction();
 	protected abstract void DoReleaseAction();
 	protected abstract void Awake();
+	protected abstract void DoBehaviour();
 
 	protected void Action() {
 		//verifie le cooldown
@@ -31,7 +32,6 @@ public abstract class PlayerActions : MonoBehaviour {
 	}
 
 	void Update() {
-		
 		if (!SecurityIsOk()) {
 			return;
 		}
@@ -43,6 +43,9 @@ public abstract class PlayerActions : MonoBehaviour {
 		if(Input.GetButtonUp(_actionKey)){
 			ReleaseAction();
 		}
+
+		DoBehaviour();
+		
 	}
 
 	bool SecurityIsOk() {

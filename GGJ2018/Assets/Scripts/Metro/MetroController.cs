@@ -20,7 +20,20 @@ public class MetroController : MonoBehaviour {
 
 	private Animator _animator;
 
+	public Animator animator {
+		get {return _animator;}
+	}
+
 	private Vector3 _initPosition;
+	public Vector3 _stationPosition;
+	public Vector3 _exitPosition;
+
+	public float _lerpPosition = 0f;
+
+	public bool _toStation = false;
+	public bool _toExit = false;
+
+	public MetroManager _metroManager;
 
 	void Start () {
 		
@@ -30,11 +43,18 @@ public class MetroController : MonoBehaviour {
 		_timerLimit = Time.time + 10.0f;
 
 		_DoorBlocker.SetActive(false);
+
 	}
 	
 	void Update () {
-		
-		transform.Translate(Vector3.right *_metroSpeed * Time.deltaTime, Space.World);
+
+		if (_toStation) {
+			transform.position = Vector3.Lerp(_initPosition, _stationPosition, _lerpPosition);
+		}
+
+		if (_toExit) {
+			transform.position = Vector3.Lerp(_stationPosition, _exitPosition, _lerpPosition);
+		}
 
 		if (_isDoorOpened) {
 
@@ -45,10 +65,15 @@ public class MetroController : MonoBehaviour {
 				_isDoorOpened = false;
 			 }
 		}
+
 	}
 
 	public void ResetPosition () {
 		transform.position = _initPosition;
+		_toExit = false;
+		_toStation = false;
+		_lerpPosition = 0f;
+		ResetTimer();
 	}
 
 	public void OnTriggerEnter (Collider _collider) {
@@ -56,19 +81,25 @@ public class MetroController : MonoBehaviour {
 		if (_collider.GetComponent<Player>()) {
 			_animator.SetBool("IsSomeoneInside", true);
 			_isSomeoneInside = true;
+			_metroManager.IsOccupied(true);
 		}
 	}
 
 	public void OnTriggerExit () {
 		_animator.SetBool("IsSomeoneInside", false);
 		_isSomeoneInside = false;
+		_metroManager.IsOccupied(false);
 	}
 
 	public void StartWaitTimer () {
+		ResetTimer();
+		_isDoorOpened = true;
+	}
+
+	public void ResetTimer () {
 		_timerForTrainDepart = 0.0f;
 		_animator.SetFloat("DepartureTime", _timerForTrainDepart);
 		_timerLimit = Time.time + 10.0f;
-		_isDoorOpened = true;
 	}
 
 	public void CloseDoors () {
@@ -81,4 +112,15 @@ public class MetroController : MonoBehaviour {
 		_DoorBlocker.SetActive(false);
 	}
 
+	public void ToStation() {
+		ResetTimer();
+		_toExit = false;
+		_toStation = true;
+	}
+
+	public void ToExit() {
+		ResetTimer();
+		_toStation = false;
+		_toExit = true;
+	}
 }
