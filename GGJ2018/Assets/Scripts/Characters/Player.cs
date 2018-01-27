@@ -27,6 +27,6 @@ public class Player : MonoBehaviour {
 	}
 
 	public void SetMaterial(string p_newMaterial) {
-		gameObject.GetComponent<MeshRenderer>().material = Resources.Load<Material>(p_newMaterial);
+		gameObject.GetComponent<MeshRenderer>().materials[1] = Resources.Load<Material>(p_newMaterial);
 	}
 }
