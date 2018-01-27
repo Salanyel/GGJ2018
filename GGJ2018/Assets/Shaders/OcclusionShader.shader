@@ -7,6 +7,8 @@
 		_OccluStrengh("Occlusion strengh", Range(0,1)) = 0.5
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
+		_IsDisplaced("Displacement trigger", Range(0, 1)) = 0.0
+		_DisplacementSpeed("Displacement speed", float) = 1.0
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -20,7 +22,7 @@
 		#pragma target 3.0
 
 		sampler2D _MainTex;
-		Sampler2D _NormalMap;
+		sampler2D _NormalMap;
 		sampler2D _OccluTex;
 
 		half _OccluStrengh;
@@ -34,6 +36,9 @@
 		half _Metallic;
 		fixed4 _Color;
 
+		half _IsDisplaced;
+		float _DisplacementSpeed;
+
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
 		// #pragma instancing_options assumeuniformscaling
@@ -42,9 +47,16 @@
 		UNITY_INSTANCING_BUFFER_END(Props)
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
+
+			float2 uvModified = IN.uv_MainTex;
+
+			if (_IsDisplaced == 1) {
+				uvModified.x += _Time[0] * _DisplacementSpeed;1
+			}
+
 			// Albedo comes from a texture tinted by color
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-			fixed4 occlu = tex2D(_OccluTex, IN.uv_MainTex);
+			fixed4 c = tex2D (_MainTex, uvModified) * _Color;
+			fixed4 occlu = tex2D(_OccluTex, uvModified);
 
 			o.Albedo = lerp(c.rgb, c.rgb * occlu.rgb, _OccluStrengh);
 			o.Normal = UnpackNormal (tex2D (_NormalMap, IN.uv_NormalMap));
