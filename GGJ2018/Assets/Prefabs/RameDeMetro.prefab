@@ -471,6 +471,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1757294502343108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4642992283920596}
+  - component: {fileID: 65802606431876674}
+  m_Layer: 0
+  m_Name: metroCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1805743919070074
 GameObject:
   m_ObjectHideFlags: 1
@@ -702,6 +718,7 @@ Transform:
   - {fileID: 4016733798999278}
   - {fileID: 4297401447071746}
   - {fileID: 4824760371719128}
+  - {fileID: 4642992283920596}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -939,6 +956,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4297401447071746}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4642992283920596
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757294502343108}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4257888301928446}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4721476423848812
 Transform:
@@ -1978,6 +2008,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.2, y: 1.7, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65802606431876674
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757294502343108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30, y: 3, z: 2.9}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65817147869125036
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2112,7 +2154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1015524579498894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09acac44e08685349a0106d3cc2f6876, type: 3}
+  m_Script: {fileID: 11500000, guid: 05620b3944eb8c747988d91868fd6774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _carList:
@@ -2120,6 +2162,7 @@ MonoBehaviour:
   - {fileID: 114404849637455022}
   - {fileID: 114457326952327616}
   _isOccupied: 0
+  _colliderRail: {fileID: 1757294502343108}
 --- !u!114 &114165489871281252
 MonoBehaviour:
   m_ObjectHideFlags: 1
