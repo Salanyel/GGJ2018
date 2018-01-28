@@ -66,10 +66,24 @@ public class Player : MonoBehaviour {
 			GetComponent<AudioSource> ().Stop ();
 		}
 
-		GetComponent<AudioSource> ().PlayOneShot (p_clip);
+		if (p_clip == _clack) {
+			StartCoroutine (WaitBeforeSound (p_clip));
+		} else {
+			GetComponent<AudioSource> ().PlayOneShot (p_clip);
+		}
 	}
 
 	public void PlaySoundContamination() {
 		PlaySound (_contamination [(int) Mathf.Floor (Random.Range (0, _contamination.Length))]);
+	}
+
+	IEnumerator WaitBeforeSound(AudioClip p_clip) {
+		yield return new WaitForSeconds (0.2f);
+
+		if (!GetComponent<AudioSource> ().isPlaying) {
+			GetComponent<AudioSource> ().Stop ();
+		}
+
+		GetComponent<AudioSource> ().PlayOneShot (p_clip);
 	}
 }
