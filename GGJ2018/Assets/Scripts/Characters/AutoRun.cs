@@ -10,8 +10,11 @@ public class AutoRun : MonoBehaviour {
 	Vector3 _position;
 
 	void Awake() {
-		GetComponentInChildren<Animator> ().SetFloat ("Speed", 0.6f);
 		_position = GetComponent<Transform>().position;
+	}
+
+	void Start() {
+		GetComponentInChildren<Animator> ().SetFloat ("Speed", 0.6f);
 	}
 
 	void Update() {
