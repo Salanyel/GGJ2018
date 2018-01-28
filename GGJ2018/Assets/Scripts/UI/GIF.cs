@@ -20,7 +20,9 @@ public class GIF : MonoBehaviour {
 	}
 
 	public void LaunchGif() {
+		_index = 0;
 		_isAnimated = true;
+		_isInverted = false;
 		_time = 1f;
 	}
 

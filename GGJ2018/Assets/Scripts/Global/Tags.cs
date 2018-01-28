@@ -18,6 +18,7 @@ public static class Tags {
 	public const string _cameraForScoring = "CameraForScoring";
 	public const string _loadingScreen = "LoadingScreen";
 	public const string _gif = "GIF";
+	public const string _goalScreen = "GoalScreen";
 
     #endregion
 
