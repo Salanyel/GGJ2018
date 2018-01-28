@@ -349,7 +349,7 @@ public class GameManager : Singleton<GameManager> {
 		}
 
 		foreach (Text text in _finalScorePanel.GetComponentsInChildren<Text>()) {
-			text.color = new Color (0f, 0f, 0f, p_value);
+			text.color = new Color (1f, 1f, 1f, p_value);
 		}
 	}
 
@@ -359,7 +359,6 @@ public class GameManager : Singleton<GameManager> {
 
 		for (int i = 1; i < _players.Length; ++i) {
 			float currentPlayerScore = _players[i].GetComponent<Player> ().Score;
-			Debug.Log (i + ": " + currentPlayerScore + " / " + score);
 
 			if (currentPlayerScore > score) {
 				score = currentPlayerScore;
@@ -367,10 +366,9 @@ public class GameManager : Singleton<GameManager> {
 			}
 		}
 		_winner = indexWinner;
-		Debug.Log ("---Winner: " + indexWinner);
 		foreach (Text text in _finalScorePanel.GetComponentsInChildren<Text>()) {
 			if (text.gameObject.name == "WinnerScore") {
-				text.text = "Score: " + score;
+				text.text = score.ToString();
 			}
 		}
 	}
