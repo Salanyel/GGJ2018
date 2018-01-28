@@ -13,6 +13,8 @@ public class Player : MonoBehaviour {
 	float _score;
 	int _indexForMaterial = 0;
 
+	Animator _animator;
+
 	public float Score {
 		get { return _score; }
 		set { _score = value; }
@@ -23,9 +25,14 @@ public class Player : MonoBehaviour {
 		set { _playerNumber = value;}
 	}
 
+	void Awake(){
+		_animator = GetComponentInChildren<Animator>();
+	}
+
 	public void SetIsContamined(bool p_isSick) {
 		int indexForMaterial = 0;
-
+		_animator.SetBool("isSick",p_isSick);
+ 
 		if(p_isSick == _isContamined) return;
 		_isContamined = p_isSick;
 
@@ -34,6 +41,10 @@ public class Player : MonoBehaviour {
 			GameObject g =  Resources.Load("IllParticle") as GameObject;
 			Instantiate(g, transform);
 			g.transform.position = g.transform.position;
+
+			GameObject _morvePart = Resources.Load("MorveParticle") as GameObject;
+			Instantiate(_morvePart, transform);
+			
 		} else {
 			gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().materials [indexForMaterial].SetFloat (ResourcesData._shaderSickChannel, 0);
 		}
