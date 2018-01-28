@@ -26,10 +26,11 @@ public class ColdAction : PlayerActions {
 
 		_isCharging = false;
 		_chargeAmount = 0f;
+		
 	}
 
 	void Fire(){
-		StartCoroutine(HideDisplay());
+		//StartCoroutine(HideDisplay());
 
 		foreach(GameObject g in SendRay()){
 			GameManager.Instance.ContaminedPlayer(g);
@@ -57,19 +58,22 @@ public class ColdAction : PlayerActions {
 			Debug.DrawRay(transform.position, direction * _actionRange * _chargeAmount,Color.yellow,4f);
 
 			if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
+				Debug.Log(hitInfo.collider.CompareTag(Tags._players));
 				if(!hitted.Contains(hitInfo.collider.gameObject)){
-					if(hitInfo.collider.CompareTag(Tags._players)){
+
+					if(hitInfo.collider.gameObject.CompareTag(Tags._players)){
+						
 						hitted.Add(hitInfo.collider.gameObject);
 					}else{
 						Rigidbody rigidbody = hitInfo.collider.GetComponent<Rigidbody>();
 						if (rigidbody != null) { 
-						float range = .2f;
-						Vector3 randv = new Vector3(
-						Random.Range(-range, range),
-						Random.Range(-range, range),
-						Random.Range(-range, range)
-						);
-						rigidbody.AddForce((transform.forward + randv) * 7f, ForceMode.Impulse);
+							float range = .2f;
+							Vector3 randv = new Vector3(
+							Random.Range(-range, range),
+							Random.Range(-range, range),
+							Random.Range(-range, range)
+							);
+							rigidbody.AddForce((transform.forward + randv) * 7f, ForceMode.Impulse);
 						}
 					}
 				}
