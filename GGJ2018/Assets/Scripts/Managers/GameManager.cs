@@ -135,12 +135,12 @@ public class GameManager : Singleton<GameManager> {
 
 		case ENUM_GAMESTATE.COUNTDOWN:
 			Debug.LogError ("Do countdown behaviour");
+			SetScoreImage();
 			ChangeGameState (ENUM_GAMESTATE.PLAYING);
 			break;
 
 		case ENUM_GAMESTATE.PLAYING:
 			_ScoringRecap.SetActive (true);			
-			SetScoreImage();
 			SetAllPlayersMovementAllowance (true);
 			break;
 
