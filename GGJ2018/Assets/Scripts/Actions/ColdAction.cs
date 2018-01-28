@@ -30,7 +30,8 @@ public class ColdAction : PlayerActions {
 		_chargeAmount = 0f;
 
 		GameObject particleObject = Resources.Load("MorveParticle") as GameObject;
-		_morveAttack = particleObject.GetComponent<ParticleSystem>();
+		GameObject _po = Instantiate(particleObject,transform);
+		_morveAttack = _po.GetComponent<ParticleSystem>();
 		
 	}
 
