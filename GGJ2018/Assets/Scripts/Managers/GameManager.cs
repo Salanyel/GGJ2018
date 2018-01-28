@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager> {
     #region Public_Attributes
 
 	public bool _isIllPlayerForcedAtBeginning;
+	public bool _isSkipingLoading = false;
 	public int _illPlayerForTest;
 	public int _numberOfPlayersInTheGame = 4;
 	public float _SecondsForGame;
@@ -21,7 +22,7 @@ public class GameManager : Singleton<GameManager> {
 
     #region Private_Attributes
 
-    private ENUM_GAMESTATE _gameState;
+    public ENUM_GAMESTATE _gameState;
 	private ENUM_ILLNESS _illness;
 
 	Illness _game;
@@ -31,6 +32,8 @@ public class GameManager : Singleton<GameManager> {
 
 	float _timeBeforeEndOfTheRound;
 	TextMesh _chronometerRenderer;
+
+	GameObject _goalScreen;
 
 	int _winner;
 	GameObject _finalScorePanel;
@@ -55,12 +58,15 @@ public class GameManager : Singleton<GameManager> {
 		_chronometerRenderer = GameObject.FindGameObjectWithTag(Tags._chronometer).GetComponent<TextMesh>();
 		_finalScorePanel = GameObject.FindGameObjectWithTag(Tags._finalScorePanel);
 		_cameraForScoring = GameObject.FindGameObjectWithTag(Tags._cameraForScoring);
+		_goalScreen = GameObject.FindGameObjectWithTag(Tags._goalScreen);
 	}	
 
 	void Start() {
 		_finalScorePanel.SetActive (false);
 		SetAllScoreElementsTransparency (0);
-		ChangeGameState(ENUM_GAMESTATE.LOADING);
+		_goalScreen.SetActive (false);
+
+		ChangeGameState(ENUM_GAMESTATE.LOADINGLEVEL);
 	}
 
 	void Update(){
@@ -90,8 +96,12 @@ public class GameManager : Singleton<GameManager> {
         switch (_gameState)
         {
 		case ENUM_GAMESTATE.LOADINGLEVEL:
-			Debug.LogError ("Do loading level behaviour");
-			ChangeGameState (ENUM_GAMESTATE.LOADING);
+			if (_isSkipingLoading) {
+				Destroy (GameObject.FindGameObjectWithTag (Tags._loadingScreen));
+				ChangeGameState (ENUM_GAMESTATE.LOADING);	
+			} else {
+				StartCoroutine (LoadingBar ());
+			}
 			break;
 
 		case ENUM_GAMESTATE.LOADING:
@@ -99,10 +109,16 @@ public class GameManager : Singleton<GameManager> {
 			LoadSpawnPosition();
 			LoadPlayers();
 			SetAllPlayersMovementAllowance (false);
-			ChangeGameState(ENUM_GAMESTATE.CINEMATICS);
+			ChangeGameState(ENUM_GAMESTATE.GOALSCREEN);
+			break;
+
+		case ENUM_GAMESTATE.GOALSCREEN:
+			_goalScreen.SetActive (true);
+			_goalScreen.GetComponent<WaitForInteraction> ().enabled = true;
 			break;
 
 		case ENUM_GAMESTATE.CINEMATICS:
+			_goalScreen.SetActive (false);
 			int indexSick = 0;
 
 			for (int i = 0; i < _players.Length; ++i) {
@@ -114,7 +130,6 @@ public class GameManager : Singleton<GameManager> {
 
 			SetCamera (indexSick);
 			_game.LaunchCinematic (GameObject.FindGameObjectWithTag (Tags.m_mainCamera), _cameraForScoring.transform.position, _cameraForScoring.transform.eulerAngles);
-			ChangeGameState (ENUM_GAMESTATE.COUNTDOWN);
 			break;
 
 		case ENUM_GAMESTATE.COUNTDOWN:
@@ -141,6 +156,7 @@ public class GameManager : Singleton<GameManager> {
 
 		case ENUM_GAMESTATE.RESET:
 			_finalScorePanel.SetActive (false);
+			_cameraForScoring.transform.SetParent (null);
 
 			foreach (Text score in _playerScore) {
 				score.text = "0000";
@@ -191,6 +207,9 @@ public class GameManager : Singleton<GameManager> {
 			player.AddComponent<PlayerController>();
 			
 			player.AddComponent<Pusher>();
+			AudioSource _as = player.AddComponent<AudioSource>();
+			_as.playOnAwake = false;
+			_as.clip = Resources.Load("sounds/Clack_Sound") as AudioClip;
 
 			p.SetIsContamined(false);
 
@@ -206,7 +225,7 @@ public class GameManager : Singleton<GameManager> {
 
 			GameObject scoring = new GameObject ();
 			scoring = Instantiate (_scoringPrefab);
-			scoring.transform.SetParent(_ScoringRecap.transform);
+			scoring.transform.SetParent(_ScoringRecap.transform, false);
 
 			_players[i] = player;
 			_playerScore [i] = scoring.GetComponent<Text> ();
@@ -246,7 +265,8 @@ public class GameManager : Singleton<GameManager> {
 
 		//Display score
 		for (int i = 0; i < _players.Length; ++i) {
-			_playerScore [i].text = GetPlayer(i).Score.ToString();
+			_playerScore [i].text = "P"+GetPlayer(i).PlayerNumber.ToString()+": "+GetPlayer(i).Score.ToString();
+			_playerScore [i].color = GetPlayer(i)._playerColor; 
 		}
 
 	}
@@ -368,6 +388,42 @@ public class GameManager : Singleton<GameManager> {
 			current += Time.deltaTime;
 			yield return new WaitForEndOfFrame ();
 		}
+	}
+
+	IEnumerator LoadingBar() {
+		Debug.Log ("Coroutine");
+		GameObject loadingScreen = GameObject.FindGameObjectWithTag (Tags._loadingScreen);
+		RectTransform bar = null;
+
+		foreach (Image image in loadingScreen.GetComponentsInChildren<Image>()) {
+			if (image.gameObject.name == "Content") {
+				bar = image.gameObject.GetComponent<RectTransform>();
+				break;
+			}
+		}
+
+		float timeForLoading = 5f;
+		float currentTime = 0f;
+		float currentBeginning = bar.transform.localPosition.x;
+		float arbitraryValue = -754f;
+		Debug.Log (currentBeginning);
+
+		while (currentTime < timeForLoading) {
+			float newPos = Mathf.Lerp (currentBeginning, arbitraryValue, currentTime / timeForLoading);
+
+			if (newPos > arbitraryValue) {
+				newPos = arbitraryValue;
+			}
+
+			Vector3 newPosV = new Vector3 (newPos, 0f, 0f);
+
+			bar.transform.localPosition = newPosV;
+			currentTime += Time.deltaTime;
+			yield return new WaitForEndOfFrame ();
+		}
+
+		GameManager.Instance.ChangeGameState (ENUM_GAMESTATE.LOADING);
+		Destroy (loadingScreen);
 	}
 
     #endregion

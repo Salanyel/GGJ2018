@@ -41,7 +41,9 @@ public class ColdAction : PlayerActions {
 	GameObject[] SendRay(){
 
 		List<GameObject> hitted = new List<GameObject>();
-		
+
+		LayerMask collisionMask = LayerMask.GetMask("Props","Players");
+
 		for(int i=0; i < 8;i++){
 			RaycastHit hitInfo;
 			Vector3 direction = transform.forward;
@@ -50,7 +52,7 @@ public class ColdAction : PlayerActions {
 			Vector3 position = transform.position;
 			position.y += 0.15f;
 
-			Physics.Raycast(position, direction * _actionRange * _chargeAmount, out hitInfo, _actionRange * _chargeAmount);
+			Physics.Raycast(position, direction * _actionRange * _chargeAmount, out hitInfo, _actionRange * _chargeAmount,collisionMask);
 			
 			Debug.DrawRay(transform.position, direction * _actionRange * _chargeAmount,Color.yellow,4f);
 
@@ -67,7 +69,7 @@ public class ColdAction : PlayerActions {
 						Random.Range(-range, range),
 						Random.Range(-range, range)
 						);
-						rigidbody.AddForce((transform.forward + randv) * 18f, ForceMode.Impulse);
+						rigidbody.AddForce((transform.forward + randv) * 7f, ForceMode.Impulse);
 						}
 					}
 				}

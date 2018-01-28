@@ -104,7 +104,6 @@ public class MetroController : MonoBehaviour {
 
 	public void CloseDoors () {
 
-		Debug.Log("DoorBlocker Active");
 		_DoorBlocker.SetActive(true);
 		_metroManager.InStation(false);
 	}

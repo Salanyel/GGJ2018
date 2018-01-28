@@ -12,8 +12,12 @@ public class Pusher : MonoBehaviour {
 
 	Player _player;
 
+	ParticleSystem _ps;
+
 	void Awake(){
 		_player = GetComponent<Player>();
+		GameObject particles = Resources.Load("HitBackParticles") as GameObject;
+		_ps = Instantiate(particles, transform).GetComponent<ParticleSystem>();
 	}
 
 	public void Push(Vector3 pushVector, float _length = .5f){
@@ -23,6 +27,7 @@ public class Pusher : MonoBehaviour {
 		_pushVector = pushVector * pushDistance;
 		_doPush = true;
 		stopPushTime = Time.time + _length;
+		_ps.Play();
 
 	}
 
