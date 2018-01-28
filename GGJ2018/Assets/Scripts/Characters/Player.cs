@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 	float _score;
 	int _indexForMaterial = 0;
 
-	Animator _animator;
+	public Animator _animator;
 
 	public float Score {
 		get { return _score; }

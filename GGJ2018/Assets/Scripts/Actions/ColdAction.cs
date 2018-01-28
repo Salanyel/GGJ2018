@@ -16,6 +16,7 @@ public class ColdAction : PlayerActions {
 	Transform gabaritTransform;
 
 	ParticleSystem _morveAttack;
+	Animator _animator;
 
 	override protected void Awake() {
 		lastAction = Time.time - coolDownTime;
@@ -31,6 +32,9 @@ public class ColdAction : PlayerActions {
 
 		GameObject particleObject = Resources.Load("MorveParticle") as GameObject;
 		_morveAttack = particleObject.GetComponent<ParticleSystem>();
+
+		_animator = GetComponentInChildren<Animator>();
+		coolDownTime = 1f;
 		
 	}
 
@@ -38,6 +42,7 @@ public class ColdAction : PlayerActions {
 		//StartCoroutine(HideDisplay());
 
 		_morveAttack.Play();
+		_animator.SetTrigger("Atchoum");
 
 		foreach(GameObject g in SendRay()){
 			GameManager.Instance.ContaminedPlayer(g);
@@ -102,8 +107,10 @@ public class ColdAction : PlayerActions {
 		
 		if(_isCharging){
 			gabaritTransform.localScale = Vector3.one * Mathf.Clamp01((Time.time - _startTime)*chargeSpeed) * (_actionRange -3f);
+			_animator.SetBool("Charging",true);
 		}else{
 			gabaritTransform.localScale = Vector3.zero;
+			_animator.SetBool("Charging",false);
 		}
 	}
 
