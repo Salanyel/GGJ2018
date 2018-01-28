@@ -20,6 +20,7 @@ public class NotContaminedAction : PlayerActions
 
     override protected void DoAction()
     {
+        _animator.SetTrigger("Attack");
         RaycastHit hitInfo;
         Physics.Raycast(transform.position, transform.forward, out hitInfo, actionPushRange);
         //push that guy

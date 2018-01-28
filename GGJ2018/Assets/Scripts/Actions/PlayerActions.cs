@@ -10,6 +10,7 @@ public abstract class PlayerActions : MonoBehaviour {
 	public float coolDownTime = 1f;
 
 	protected float lastAction;
+	bool _currentAction = false;
 
 	#endregion
 
@@ -22,13 +23,16 @@ public abstract class PlayerActions : MonoBehaviour {
 		//verifie le cooldown
 		if(Time.time >= lastAction + coolDownTime){
 			lastAction = Time.time;
-
+			_currentAction = true;
 			DoAction();
 		}
 	}
 
 	protected void ReleaseAction(){
-		DoReleaseAction();
+		if (_currentAction) {
+			_currentAction = false;
+			DoReleaseAction ();
+		}
 	}
 
 	void Update() {
