@@ -21,7 +21,7 @@ public class AutoRun : MonoBehaviour {
 		GetComponent<Transform>().Translate(new Vector3(0f, 0f, 1f) * _moveSpeed * _moveSpeed);
 		_time += Time.deltaTime;
 
-		if (_time > 4f) {
+		if (_time > 5f) {
 			_time = 0;
 			GetComponent<Transform>().position = _position;
 			GetComponentInChildren<Animator> ().transform.localPosition = Vector3.zero;
