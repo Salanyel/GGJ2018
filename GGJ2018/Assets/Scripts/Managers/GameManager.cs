@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager> {
     #region Public_Attributes
 
 	public bool _isIllPlayerForcedAtBeginning;
+	public bool _isSkipingLoading = false;
 	public int _illPlayerForTest;
 	public int _numberOfPlayersInTheGame = 4;
 	public float _SecondsForGame;
@@ -90,7 +91,12 @@ public class GameManager : Singleton<GameManager> {
         switch (_gameState)
         {
 		case ENUM_GAMESTATE.LOADINGLEVEL:
-			StartCoroutine (LoadingBar ());
+			if (_isSkipingLoading) {
+				Destroy (GameObject.FindGameObjectWithTag (Tags._loadingScreen));
+				ChangeGameState (ENUM_GAMESTATE.LOADING);	
+			} else {
+				StartCoroutine (LoadingBar ());
+			}
 			break;
 
 		case ENUM_GAMESTATE.LOADING:

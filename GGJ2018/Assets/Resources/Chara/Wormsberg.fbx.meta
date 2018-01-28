@@ -1,25 +1,102 @@
 fileFormatVersion: 2
-guid: 6c1fc06c5d0c67b4a81e260f326a768f
-timeCreated: 1517061408
+guid: 2e1254b707f06084fa9378971de9e4df
+timeCreated: 1517089106
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Chara
-    100002: Sphere.002
-    100004: //RootNode
-    400000: Chara
-    400002: Sphere.002
-    400004: //RootNode
-    2100000: Blanc
-    2100002: Noir
-    2100004: Poulpi
-    2300000: Chara
-    2300002: Sphere.002
-    3300000: Chara
-    3300002: Sphere.002
-    4300000: Sphere.002
-    4300002: Chara
+    100000: CAT-Eye.L
+    100002: CAT-Eye.L_end
+    100004: CAT-Eye.R
+    100006: CAT-Eye.R_end
+    100008: CAT-foot.L
+    100010: CAT-foot.R
+    100012: CAT-shin.L
+    100014: CAT-shin.L.001
+    100016: CAT-shin.R
+    100018: CAT-shin.R.001
+    100020: CAT-spine
+    100022: CAT-spine.001
+    100024: CAT-spine.002
+    100026: CAT-spine.003
+    100028: CAT-spine.004
+    100030: CAT-spine.005
+    100032: CAT-spine.006
+    100034: CAT-spine.006_end
+    100036: CAT-Tentacle.Big.L.001
+    100038: CAT-Tentacle.Big.L.002
+    100040: CAT-Tentacle.Big.L.003
+    100042: CAT-Tentacle.Big.L.003_end
+    100044: CAT-Tentacle.Big.R.001
+    100046: CAT-Tentacle.Big.R.002
+    100048: CAT-Tentacle.Big.R.003
+    100050: CAT-Tentacle.Big.R.003_end
+    100052: CAT-Tentacle.Little.L.001
+    100054: CAT-Tentacle.Little.L.002
+    100056: CAT-Tentacle.Little.L.002_end
+    100058: CAT-Tentacle.Little.R.001
+    100060: CAT-Tentacle.Little.R.002
+    100062: CAT-Tentacle.Little.R.002_end
+    100064: CAT-thigh.L
+    100066: CAT-thigh.L.001
+    100068: CAT-thigh.R
+    100070: CAT-thigh.R.001
+    100072: CAT-toe.L
+    100074: CAT-toe.L_end
+    100076: CAT-toe.R
+    100078: CAT-toe.R_end
+    100080: rig_catcher
+    100082: Wormsberg
+    100084: //RootNode
+    400000: CAT-Eye.L
+    400002: CAT-Eye.L_end
+    400004: CAT-Eye.R
+    400006: CAT-Eye.R_end
+    400008: CAT-foot.L
+    400010: CAT-foot.R
+    400012: CAT-shin.L
+    400014: CAT-shin.L.001
+    400016: CAT-shin.R
+    400018: CAT-shin.R.001
+    400020: CAT-spine
+    400022: CAT-spine.001
+    400024: CAT-spine.002
+    400026: CAT-spine.003
+    400028: CAT-spine.004
+    400030: CAT-spine.005
+    400032: CAT-spine.006
+    400034: CAT-spine.006_end
+    400036: CAT-Tentacle.Big.L.001
+    400038: CAT-Tentacle.Big.L.002
+    400040: CAT-Tentacle.Big.L.003
+    400042: CAT-Tentacle.Big.L.003_end
+    400044: CAT-Tentacle.Big.R.001
+    400046: CAT-Tentacle.Big.R.002
+    400048: CAT-Tentacle.Big.R.003
+    400050: CAT-Tentacle.Big.R.003_end
+    400052: CAT-Tentacle.Little.L.001
+    400054: CAT-Tentacle.Little.L.002
+    400056: CAT-Tentacle.Little.L.002_end
+    400058: CAT-Tentacle.Little.R.001
+    400060: CAT-Tentacle.Little.R.002
+    400062: CAT-Tentacle.Little.R.002_end
+    400064: CAT-thigh.L
+    400066: CAT-thigh.L.001
+    400068: CAT-thigh.R
+    400070: CAT-thigh.R.001
+    400072: CAT-toe.L
+    400074: CAT-toe.L_end
+    400076: CAT-toe.R
+    400078: CAT-toe.R_end
+    400080: rig_catcher
+    400082: Wormsberg
+    400084: //RootNode
+    2100000: Poulpi
+    2100002: Blanc
+    2100004: Noir
+    4300000: Wormsberg
+    9500000: //RootNode
+    13700000: Wormsberg
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -69,7 +146,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -94,7 +171,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
