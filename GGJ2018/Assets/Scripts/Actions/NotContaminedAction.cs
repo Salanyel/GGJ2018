@@ -7,11 +7,13 @@ public class NotContaminedAction : PlayerActions
 
     public float actionPushRange = 2f;
     public LayerMask collisionMask;
+    AudioSource _audioSource;
 
     override protected void Awake()
     {
         lastAction = Time.time - coolDownTime;
         coolDownTime = .5f;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     override protected void DoAction()
@@ -40,9 +42,13 @@ public class NotContaminedAction : PlayerActions
         }
 
         Debug.Log(hitInfo.collider.name);
-    }else{
+        }else{
 			Debug.Log("Coup dans le vide");
 		}
+
+        if(!_audioSource.isPlaying){
+            _audioSource.Play();
+        }
 
 	}
 
