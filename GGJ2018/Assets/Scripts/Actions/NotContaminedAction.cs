@@ -8,12 +8,14 @@ public class NotContaminedAction : PlayerActions
     public float actionPushRange = 2f;
     public LayerMask collisionMask;
     AudioSource _audioSource;
+    Animator _animator;
 
     override protected void Awake()
     {
         lastAction = Time.time - coolDownTime;
         coolDownTime = .5f;
         _audioSource = GetComponent<AudioSource>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     override protected void DoAction()
@@ -39,6 +41,7 @@ public class NotContaminedAction : PlayerActions
             	);
                 rigidbody.AddForce((transform.forward + randv) * 18f, ForceMode.Impulse);
             }
+            _animator.SetTrigger("Attack");
         }
 
         Debug.Log(hitInfo.collider.name);
@@ -46,9 +49,7 @@ public class NotContaminedAction : PlayerActions
 			Debug.Log("Coup dans le vide");
 		}
 
-        if(!_audioSource.isPlaying){
-            _audioSource.Play();
-        }
+		GetComponent<Player> ().PlaySound (GetComponent<Player> ()._clack);
 
 	}
 

@@ -28,6 +28,7 @@ public class Pusher : MonoBehaviour {
 		_doPush = true;
 		stopPushTime = Time.time + _length;
 		_ps.Play();
+		_player._animator.SetTrigger("Hitten");
 
 	}
 

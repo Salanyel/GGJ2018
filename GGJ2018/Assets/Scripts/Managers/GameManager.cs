@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// Class used to manage the game
@@ -228,9 +230,15 @@ public class GameManager : Singleton<GameManager> {
 			player.AddComponent<PlayerController>();
 			
 			player.AddComponent<Pusher>();
+
+			AudioMixer mixer = Resources.Load<AudioMixer>(ResourcesData._audioMixer);
 			AudioSource _as = player.AddComponent<AudioSource>();
 			_as.playOnAwake = false;
-			_as.clip = Resources.Load("sounds/Clack_Sound") as AudioClip;
+			_as.loop = false;
+			p._clack = Resources.Load(ResourcesData._clackSound) as AudioClip;
+			p._contamination = Resources.Load(ResourcesData._contamination) as AudioClip;
+
+			_as.outputAudioMixerGroup = mixer.FindMatchingGroups("Interactions")[0];
 
 			p.SetIsContamined(false);
 
