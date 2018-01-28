@@ -14,7 +14,6 @@ public class ColdAction : PlayerActions {
 	PlayerController _playerController;
 	GameObject gabaritGO;
 	Transform gabaritTransform;
-	ParticleSystem _morveAttack;
 
 	override protected void Awake() {
 		lastAction = Time.time - coolDownTime;
@@ -25,18 +24,13 @@ public class ColdAction : PlayerActions {
 		GameObject g =  Instantiate(Resources.Load("GabaritColdPrefab",typeof(GameObject)), transform) as GameObject;
 		gabaritTransform = g.transform;
 
-		GameObject _morvePart = Resources.Load("MorveParticle") as GameObject;
-		Instantiate(_morvePart, transform);
-		//_morveAttack = _morvePart.GetComponent<ParticleSystem>();
-
 		_isCharging = false;
 		_chargeAmount = 0f;
+		
 	}
 
 	void Fire(){
 		//StartCoroutine(HideDisplay());
-
-		//_morveAttack.Play();
 
 		foreach(GameObject g in SendRay()){
 			GameManager.Instance.ContaminedPlayer(g);
@@ -66,7 +60,7 @@ public class ColdAction : PlayerActions {
 			if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
 				Debug.Log(hitInfo.collider.CompareTag(Tags._players));
 				if(!hitted.Contains(hitInfo.collider.gameObject)){
-					
+
 					if(hitInfo.collider.gameObject.CompareTag(Tags._players)){
 						
 						hitted.Add(hitInfo.collider.gameObject);

@@ -25,15 +25,19 @@ public class Player : MonoBehaviour {
 	public void SetIsContamined(bool p_isSick) {
 		int indexForMaterial = 0;
 
-/* 
+ 
 		if(p_isSick == _isContamined) return;
 		_isContamined = p_isSick;
-*/
+
 		if (_isContamined) {
 			gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().materials [indexForMaterial].SetFloat (ResourcesData._shaderSickChannel, 1);
 			GameObject g =  Resources.Load("IllParticle") as GameObject;
 			Instantiate(g, transform);
 			g.transform.position = g.transform.position;
+
+			GameObject _morvePart = Resources.Load("MorveParticle") as GameObject;
+			Instantiate(_morvePart, transform);
+			
 		} else {
 			gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().materials [indexForMaterial].SetFloat (ResourcesData._shaderSickChannel, 0);
 		}
