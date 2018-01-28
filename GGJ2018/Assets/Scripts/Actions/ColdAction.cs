@@ -15,6 +15,8 @@ public class ColdAction : PlayerActions {
 	GameObject gabaritGO;
 	Transform gabaritTransform;
 
+	ParticleSystem _morveAttack;
+
 	override protected void Awake() {
 		lastAction = Time.time - coolDownTime;
 		coolDownTime = 0f;
@@ -26,11 +28,16 @@ public class ColdAction : PlayerActions {
 
 		_isCharging = false;
 		_chargeAmount = 0f;
+
+		GameObject particleObject = Resources.Load("MorveParticle") as GameObject;
+		_morveAttack = particleObject.GetComponent<ParticleSystem>();
 		
 	}
 
 	void Fire(){
 		//StartCoroutine(HideDisplay());
+
+		_morveAttack.Play();
 
 		foreach(GameObject g in SendRay()){
 			GameManager.Instance.ContaminedPlayer(g);

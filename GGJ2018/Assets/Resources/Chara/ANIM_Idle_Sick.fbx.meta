@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b86f34da2b0275649857fd76a07c324a
-timeCreated: 1517138267
+guid: 2c93b45c6899695439b6553d7f2aa980
+timeCreated: 1517139809
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -93,7 +93,7 @@ ModelImporter:
     2100002: Blanc
     2100004: Noir
     4300000: Wormsberg
-    7400000: IDLE
+    7400000: IDLESICK
     9500000: //RootNode
     13700000: Wormsberg
   externalObjects: {}
@@ -124,10 +124,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: IDLE
+      name: IDLESICK
       takeName: Scene
       firstFrame: 0
-      lastFrame: 222
+      lastFrame: 287
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
