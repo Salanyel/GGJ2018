@@ -236,7 +236,11 @@ public class GameManager : Singleton<GameManager> {
 			_as.playOnAwake = false;
 			_as.loop = false;
 			p._clack = Resources.Load(ResourcesData._clackSound) as AudioClip;
-			p._contamination = Resources.Load(ResourcesData._contamination) as AudioClip;
+
+			p._contamination = new AudioClip[3];
+			p._contamination[0] = Resources.Load(ResourcesData._contamination1) as AudioClip;
+			p._contamination[1] = Resources.Load(ResourcesData._contamination2) as AudioClip;
+			p._contamination[2] = Resources.Load(ResourcesData._contamination3) as AudioClip;
 
 			_as.outputAudioMixerGroup = mixer.FindMatchingGroups("Interactions")[0];
 

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 	public Color _playerColor;
 
 	public AudioClip _clack;
-	public AudioClip _contamination;
+	public AudioClip[] _contamination;
 
 	float _score;
 	int _indexForMaterial = 0;
@@ -67,5 +67,9 @@ public class Player : MonoBehaviour {
 		}
 
 		GetComponent<AudioSource> ().PlayOneShot (p_clip);
+	}
+
+	public void PlaySoundContamination() {
+		PlaySound (_contamination [(int) Mathf.Floor (Random.Range (0, _contamination.Length))]);
 	}
 }
