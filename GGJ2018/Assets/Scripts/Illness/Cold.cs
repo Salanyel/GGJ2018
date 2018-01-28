@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Cold : Illness {
 
+	GIF _gif;
+
+	void Awake() {
+		_gif = FindObjectOfType<GIF> ();
+		_gif.gameObject.SetActive (false);
+	}
+
 	override public bool IsGameFinished() {
 		bool _areAllPlayerSick = true;
 
@@ -26,7 +33,7 @@ public class Cold : Illness {
 	}
 
 	IEnumerator Cinematic(GameObject p_camera, Vector3 p_firstPosition, Vector3 p_firstEulerAngles) {
-		float cinematicDuration = 3f;
+		float cinematicDuration = 2f;
 		float timeElapsed = 0f;
 		Vector3 finalPosition = p_camera.transform.position;
 		Vector3 finalEulerAngles = p_camera.transform.eulerAngles;
@@ -34,7 +41,16 @@ public class Cold : Illness {
 		p_camera.transform.position = p_firstPosition;
 		p_camera.transform.eulerAngles = p_firstEulerAngles;
 
-		yield return new WaitForSeconds (1f);
+		_gif.gameObject.SetActive (true);
+		_gif.LaunchGif ();
+
+		yield return new WaitForSeconds (0.8f);
+
+		_gif.GetComponent<AudioSource> ().Play ();
+
+		yield return new WaitForSeconds (1.7f);
+
+		_gif.ReverseGIF ();
 
 		while (timeElapsed < cinematicDuration) {
 			Vector3 position = Vector3.Lerp (p_firstPosition, finalPosition, timeElapsed / cinematicDuration);
@@ -46,6 +62,8 @@ public class Cold : Illness {
 			timeElapsed += Time.deltaTime;
 			yield return new WaitForEndOfFrame ();
 		}
+
+		_gif.gameObject.SetActive (false);
 
 		p_camera.transform.position = finalPosition;
 		p_camera.transform.eulerAngles = finalEulerAngles;
