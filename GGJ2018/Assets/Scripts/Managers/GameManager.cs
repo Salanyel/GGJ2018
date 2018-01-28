@@ -80,6 +80,25 @@ public class GameManager : Singleton<GameManager> {
 				UpdateScore ();
 			}
 		}
+
+		if (_gameState == ENUM_GAMESTATE.SCORING) {
+
+			if (Input.GetButtonDown("Action1")) {
+				ChangeGameState(ENUM_GAMESTATE.RESET);
+			}
+
+			if (Input.GetButtonDown("Action2")) {
+				ChangeGameState(ENUM_GAMESTATE.RESET);
+			}
+
+			if (Input.GetButtonDown("Action3")) {
+				ChangeGameState(ENUM_GAMESTATE.RESET);
+			}
+
+			if (Input.GetButtonDown("Action4")) {
+				ChangeGameState(ENUM_GAMESTATE.RESET);
+			}
+		}
 	}
 
     #endregion
