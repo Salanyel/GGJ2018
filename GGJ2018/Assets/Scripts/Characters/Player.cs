@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 	public bool _allowInput = true;
 
 	float _score;
+	int _indexForMaterial = 0;
 
 	public float Score {
 		get { return _score; }
@@ -22,22 +23,24 @@ public class Player : MonoBehaviour {
 	}
 
 	public void SetIsContamined(bool p_isSick) {
+		int indexForMaterial = 0;
+
 		if(p_isSick == _isContamined) return;
 		_isContamined = p_isSick;
 
 		if (_isContamined) {
-			gameObject.GetComponentInChildren<MeshRenderer> ().materials [1].SetFloat (ResourcesData._shaderSickChannel, 1);
+			gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().materials [indexForMaterial].SetFloat (ResourcesData._shaderSickChannel, 1);
 			GameObject g =  Resources.Load("IllParticle") as GameObject;
 			Instantiate(g, transform);
 			g.transform.position = g.transform.position;
 		} else {
-			gameObject.GetComponentInChildren<MeshRenderer> ().materials [1].SetFloat (ResourcesData._shaderSickChannel, 0);
+			gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().materials [indexForMaterial].SetFloat (ResourcesData._shaderSickChannel, 0);
 		}
 	}
 
 	public void SetMaterial(string p_newMaterial) {
-		Material[] materials = gameObject.GetComponentInChildren<MeshRenderer>().materials;
-		materials[1] = Resources.Load<Material>(p_newMaterial);
-		gameObject.GetComponentInChildren<MeshRenderer> ().materials = materials;
+		Material[] materials = gameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials;
+		materials[_indexForMaterial] = Resources.Load<Material>(p_newMaterial);
+		gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().materials = materials;
 	}
 }
