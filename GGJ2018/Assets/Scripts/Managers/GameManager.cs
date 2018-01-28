@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager> {
 	public GameObject _scoringPrefab;
 	public GameObject _charactersBodyPrefab;
 	public GameObject _ScoringRecap;
+	public Sprite[] _playerImages; 
 
     #endregion
 
@@ -134,11 +135,12 @@ public class GameManager : Singleton<GameManager> {
 
 		case ENUM_GAMESTATE.COUNTDOWN:
 			Debug.LogError ("Do countdown behaviour");
+			SetScoreImage();
 			ChangeGameState (ENUM_GAMESTATE.PLAYING);
 			break;
 
 		case ENUM_GAMESTATE.PLAYING:
-			_ScoringRecap.SetActive (true);
+			_ScoringRecap.SetActive (true);			
 			SetAllPlayersMovementAllowance (true);
 			break;
 
@@ -265,10 +267,17 @@ public class GameManager : Singleton<GameManager> {
 
 		//Display score
 		for (int i = 0; i < _players.Length; ++i) {
-			_playerScore [i].text = "P"+GetPlayer(i).PlayerNumber.ToString()+": "+GetPlayer(i).Score.ToString();
+			_playerScore [i].text = /*"P"+GetPlayer(i).PlayerNumber.ToString()+": "+*/GetPlayer(i).Score.ToString();
 			_playerScore [i].color = GetPlayer(i)._playerColor; 
 		}
 
+	}
+
+	public void SetScoreImage() {
+
+		for (int i = 0; i < _players.Length; ++i) {
+			_playerScore[i].GetComponentInChildren<Image>().sprite = _playerImages[i];
+		}
 	}
 
 	public void ContaminedPlayer(GameObject p_player) {
