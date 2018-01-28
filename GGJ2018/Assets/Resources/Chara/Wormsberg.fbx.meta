@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 2e1254b707f06084fa9378971de9e4df
-timeCreated: 1517089106
+guid: 3a5908f73873485448e4d8ebcd3ec6f6
+timeCreated: 1517137126
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -22,32 +22,31 @@ ModelImporter:
     100028: CAT-spine.004
     100030: CAT-spine.005
     100032: CAT-spine.006
-    100034: CAT-spine.006_end
-    100036: CAT-Tentacle.Big.L.001
-    100038: CAT-Tentacle.Big.L.002
-    100040: CAT-Tentacle.Big.L.003
-    100042: CAT-Tentacle.Big.L.003_end
-    100044: CAT-Tentacle.Big.R.001
-    100046: CAT-Tentacle.Big.R.002
-    100048: CAT-Tentacle.Big.R.003
-    100050: CAT-Tentacle.Big.R.003_end
-    100052: CAT-Tentacle.Little.L.001
-    100054: CAT-Tentacle.Little.L.002
-    100056: CAT-Tentacle.Little.L.002_end
-    100058: CAT-Tentacle.Little.R.001
-    100060: CAT-Tentacle.Little.R.002
-    100062: CAT-Tentacle.Little.R.002_end
-    100064: CAT-thigh.L
-    100066: CAT-thigh.L.001
-    100068: CAT-thigh.R
-    100070: CAT-thigh.R.001
-    100072: CAT-toe.L
-    100074: CAT-toe.L_end
-    100076: CAT-toe.R
-    100078: CAT-toe.R_end
-    100080: rig_catcher
+    100034: CAT-Tentacle.Big.L.001
+    100036: CAT-Tentacle.Big.L.002
+    100038: CAT-Tentacle.Big.L.003
+    100040: CAT-Tentacle.Big.L.003_end
+    100042: CAT-Tentacle.Big.R.001
+    100044: CAT-Tentacle.Big.R.002
+    100046: CAT-Tentacle.Big.R.003
+    100048: CAT-Tentacle.Big.R.003_end
+    100050: CAT-Tentacle.Little.L.001
+    100052: CAT-Tentacle.Little.L.002
+    100054: CAT-Tentacle.Little.L.002_end
+    100056: CAT-Tentacle.Little.R.001
+    100058: CAT-Tentacle.Little.R.002
+    100060: CAT-Tentacle.Little.R.002_end
+    100062: CAT-thigh.L
+    100064: CAT-thigh.L.001
+    100066: CAT-thigh.R
+    100068: CAT-thigh.R.001
+    100070: CAT-toe.L
+    100072: CAT-toe.L_end
+    100074: CAT-toe.R
+    100076: CAT-toe.R_end
+    100078: rig_catcher
+    100080: //RootNode
     100082: Wormsberg
-    100084: //RootNode
     400000: CAT-Eye.L
     400002: CAT-Eye.L_end
     400004: CAT-Eye.R
@@ -65,32 +64,31 @@ ModelImporter:
     400028: CAT-spine.004
     400030: CAT-spine.005
     400032: CAT-spine.006
-    400034: CAT-spine.006_end
-    400036: CAT-Tentacle.Big.L.001
-    400038: CAT-Tentacle.Big.L.002
-    400040: CAT-Tentacle.Big.L.003
-    400042: CAT-Tentacle.Big.L.003_end
-    400044: CAT-Tentacle.Big.R.001
-    400046: CAT-Tentacle.Big.R.002
-    400048: CAT-Tentacle.Big.R.003
-    400050: CAT-Tentacle.Big.R.003_end
-    400052: CAT-Tentacle.Little.L.001
-    400054: CAT-Tentacle.Little.L.002
-    400056: CAT-Tentacle.Little.L.002_end
-    400058: CAT-Tentacle.Little.R.001
-    400060: CAT-Tentacle.Little.R.002
-    400062: CAT-Tentacle.Little.R.002_end
-    400064: CAT-thigh.L
-    400066: CAT-thigh.L.001
-    400068: CAT-thigh.R
-    400070: CAT-thigh.R.001
-    400072: CAT-toe.L
-    400074: CAT-toe.L_end
-    400076: CAT-toe.R
-    400078: CAT-toe.R_end
-    400080: rig_catcher
-    400082: Wormsberg
-    400084: //RootNode
+    400034: CAT-Tentacle.Big.L.001
+    400036: CAT-Tentacle.Big.L.002
+    400038: CAT-Tentacle.Big.L.003
+    400040: CAT-Tentacle.Big.L.003_end
+    400042: CAT-Tentacle.Big.R.001
+    400044: CAT-Tentacle.Big.R.002
+    400046: CAT-Tentacle.Big.R.003
+    400048: CAT-Tentacle.Big.R.003_end
+    400050: CAT-Tentacle.Little.L.001
+    400052: CAT-Tentacle.Little.L.002
+    400054: CAT-Tentacle.Little.L.002_end
+    400056: CAT-Tentacle.Little.R.001
+    400058: CAT-Tentacle.Little.R.002
+    400060: CAT-Tentacle.Little.R.002_end
+    400062: CAT-thigh.L
+    400064: CAT-thigh.L.001
+    400066: CAT-thigh.R
+    400068: CAT-thigh.R.001
+    400070: CAT-toe.L
+    400072: CAT-toe.L_end
+    400074: CAT-toe.R
+    400076: CAT-toe.R_end
+    400078: rig_catcher
+    400080: Wormsberg
+    400082: //RootNode
     2100000: Poulpi
     2100002: Blanc
     2100004: Noir
@@ -146,7 +144,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
