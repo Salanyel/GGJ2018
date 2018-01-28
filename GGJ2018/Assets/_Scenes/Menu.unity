@@ -359,7 +359,7 @@ Prefab:
     - target: {fileID: 224903960497158896, guid: 8bd8960cba790174ba6644d7444e00d0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -130.88507
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224702490510170084, guid: 8bd8960cba790174ba6644d7444e00d0,
         type: 2}
@@ -379,7 +379,7 @@ Prefab:
     - target: {fileID: 224702490510170084, guid: 8bd8960cba790174ba6644d7444e00d0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -438.6552
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224089785836474820, guid: 8bd8960cba790174ba6644d7444e00d0,
         type: 2}
@@ -399,7 +399,7 @@ Prefab:
     - target: {fileID: 224089785836474820, guid: 8bd8960cba790174ba6644d7444e00d0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -848.42535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1269976285582994, guid: 8bd8960cba790174ba6644d7444e00d0, type: 2}
       propertyPath: m_IsActive
@@ -407,7 +407,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1156654924186720, guid: 8bd8960cba790174ba6644d7444e00d0, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8bd8960cba790174ba6644d7444e00d0, type: 2}
@@ -1690,23 +1690,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc1d16236ae6dd46b765aca58b67f83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1949555233 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1020085896476966, guid: 7639b79e42cb6314ca323bec1da07803,
-    type: 2}
-  m_PrefabInternal: {fileID: 1257440760}
---- !u!114 &1949555236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1949555233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db8b6768797f48f429a1bdfbd8827be3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 0.1
 --- !u!1001 &1958833436
 Prefab:
   m_ObjectHideFlags: 0
