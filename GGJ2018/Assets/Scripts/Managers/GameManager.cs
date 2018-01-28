@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Class used to manage the game
@@ -74,6 +75,10 @@ public class GameManager : Singleton<GameManager> {
 
 	void Update(){
 		
+		if(Input.GetKeyDown(KeyCode.Escape)){
+			Application.Quit();
+		}
+
 		if (_gameState == ENUM_GAMESTATE.PLAYING) {
 			if (_game.IsGameFinished () || _timeBeforeEndOfTheRound < 1f) {
 				ChangeGameState (ENUM_GAMESTATE.END);
@@ -178,6 +183,12 @@ public class GameManager : Singleton<GameManager> {
 			break;
 
 		case ENUM_GAMESTATE.RESET:
+
+			SceneManager.LoadScene("Level 1");
+
+			break;
+
+			/* 
 			_finalScorePanel.SetActive (false);
 			_cameraForScoring.transform.SetParent (null);
 
@@ -194,6 +205,7 @@ public class GameManager : Singleton<GameManager> {
             default:
                 Debug.Log("/ ! \\ No game state defined for the value: " + _gameState.ToString());
                 break;
+				*/
         }
     }
 
