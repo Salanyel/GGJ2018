@@ -61,4 +61,9 @@ MonoBehaviour:
   _charactersBodyPrefab: {fileID: 1992857887769382, guid: 7639b79e42cb6314ca323bec1da07803,
     type: 2}
   _ScoringRecap: {fileID: 0}
+  _playerImages:
+  - {fileID: 21300000, guid: 28cb599b11e0e70448423e33a1658a9f, type: 3}
+  - {fileID: 21300000, guid: bbcf09630f784a741ac46c5203315f31, type: 3}
+  - {fileID: 21300000, guid: 2a72d8f122cf4184f989c2f42d01c546, type: 3}
+  - {fileID: 21300000, guid: 34fdc02e13069314494ed16088f5190e, type: 3}
   _gameState: 0

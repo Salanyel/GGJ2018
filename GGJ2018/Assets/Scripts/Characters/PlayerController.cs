@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
 
     private Player _player;
     private Rigidbody _rigidbody;
-    Animator animator;
 
     Dictionary<string, Vector3> elevatorTranslation;
 
@@ -31,7 +30,6 @@ public class PlayerController : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody>();
         elevatorTranslation = new Dictionary<string, Vector3>();
-        animator = GetComponentInChildren<Animator>();
     }
 
     public void AddElevator(string _name, Vector3 force){
@@ -56,7 +54,6 @@ public class PlayerController : MonoBehaviour
             var z = Input.GetAxis(_VerticalAxis) * Time.deltaTime * _playerSpeed;
 
             Vector3 direction = new Vector3(x, 0.0f, z);
-            animator.SetFloat("Speed", direction.magnitude/Time.deltaTime);
 
             transform.Translate(direction, Space.World);
             if(direction != Vector3.zero){
