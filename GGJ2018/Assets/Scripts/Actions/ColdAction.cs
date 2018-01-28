@@ -20,7 +20,6 @@ public class ColdAction : PlayerActions {
 
 	override protected void Awake() {
 		lastAction = Time.time - coolDownTime;
-		coolDownTime = 0f;
 		
 		_playerController = gameObject.GetComponent<PlayerController>();
 
@@ -31,7 +30,8 @@ public class ColdAction : PlayerActions {
 		_chargeAmount = 0f;
 
 		GameObject particleObject = Resources.Load("MorveParticle") as GameObject;
-		_morveAttack = particleObject.GetComponent<ParticleSystem>();
+		GameObject po = Instantiate (particleObject, transform);
+		_morveAttack = po.GetComponent<ParticleSystem>();
 
 		_animator = GetComponentInChildren<Animator>();
 		coolDownTime = 1f;
@@ -39,10 +39,10 @@ public class ColdAction : PlayerActions {
 	}
 
 	void Fire(){
-		//StartCoroutine(HideDisplay());
-
 		_morveAttack.Play();
 		_animator.SetTrigger("Atchoum");
+
+		GetComponent<Player> ().PlaySound (GetComponent<Player> ()._contamination);
 
 		foreach(GameObject g in SendRay()){
 			GameManager.Instance.ContaminedPlayer(g);
@@ -70,7 +70,6 @@ public class ColdAction : PlayerActions {
 			Debug.DrawRay(transform.position, direction * _actionRange * _chargeAmount,Color.yellow,4f);
 
 			if(hitInfo.collider != null && hitInfo.collider.gameObject != gameObject){
-				Debug.Log(hitInfo.collider.CompareTag(Tags._players));
 				if(!hitted.Contains(hitInfo.collider.gameObject)){
 
 					if(hitInfo.collider.gameObject.CompareTag(Tags._players)){
