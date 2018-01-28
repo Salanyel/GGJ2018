@@ -225,7 +225,7 @@ public class GameManager : Singleton<GameManager> {
 
 			GameObject scoring = new GameObject ();
 			scoring = Instantiate (_scoringPrefab);
-			scoring.transform.SetParent(_ScoringRecap.transform);
+			scoring.transform.SetParent(_ScoringRecap.transform, false);
 
 			_players[i] = player;
 			_playerScore [i] = scoring.GetComponent<Text> ();
@@ -265,7 +265,8 @@ public class GameManager : Singleton<GameManager> {
 
 		//Display score
 		for (int i = 0; i < _players.Length; ++i) {
-			_playerScore [i].text = GetPlayer(i).Score.ToString();
+			_playerScore [i].text = "P"+GetPlayer(i).PlayerNumber.ToString()+": "+GetPlayer(i).Score.ToString();
+			_playerScore [i].color = GetPlayer(i)._playerColor; 
 		}
 
 	}

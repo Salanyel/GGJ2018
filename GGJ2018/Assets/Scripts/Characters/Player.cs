@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 	public int _playerNumber;
 
 	public bool _allowInput = true;
+	public Color _playerColor;
 
 	float _score;
 	int _indexForMaterial = 0;
@@ -42,5 +43,7 @@ public class Player : MonoBehaviour {
 		Material[] materials = gameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials;
 		materials[_indexForMaterial] = Resources.Load<Material>(p_newMaterial);
 		gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().materials = materials;
+
+		_playerColor = materials[_indexForMaterial].color;
 	}
 }
