@@ -12,6 +12,8 @@ TagManager:
   - FinalScorePanel
   - CameraForScoring
   - LoadingScreen
+  - GIF
+  - GoalScreen
   layers:
   - Default
   - TransparentFX

@@ -33,6 +33,8 @@ public class GameManager : Singleton<GameManager> {
 	float _timeBeforeEndOfTheRound;
 	TextMesh _chronometerRenderer;
 
+	GameObject _goalScreen;
+
 	int _winner;
 	GameObject _finalScorePanel;
 	GameObject _cameraForScoring;
@@ -56,11 +58,14 @@ public class GameManager : Singleton<GameManager> {
 		_chronometerRenderer = GameObject.FindGameObjectWithTag(Tags._chronometer).GetComponent<TextMesh>();
 		_finalScorePanel = GameObject.FindGameObjectWithTag(Tags._finalScorePanel);
 		_cameraForScoring = GameObject.FindGameObjectWithTag(Tags._cameraForScoring);
+		_goalScreen = GameObject.FindGameObjectWithTag(Tags._goalScreen);
 	}	
 
 	void Start() {
 		_finalScorePanel.SetActive (false);
 		SetAllScoreElementsTransparency (0);
+		_goalScreen.SetActive (false);
+
 		ChangeGameState(ENUM_GAMESTATE.LOADINGLEVEL);
 	}
 
@@ -104,10 +109,16 @@ public class GameManager : Singleton<GameManager> {
 			LoadSpawnPosition();
 			LoadPlayers();
 			SetAllPlayersMovementAllowance (false);
-			ChangeGameState(ENUM_GAMESTATE.CINEMATICS);
+			ChangeGameState(ENUM_GAMESTATE.GOALSCREEN);
+			break;
+
+		case ENUM_GAMESTATE.GOALSCREEN:
+			_goalScreen.SetActive (true);
+			_goalScreen.GetComponent<WaitForInteraction> ().enabled = true;
 			break;
 
 		case ENUM_GAMESTATE.CINEMATICS:
+			_goalScreen.SetActive (false);
 			int indexSick = 0;
 
 			for (int i = 0; i < _players.Length; ++i) {
@@ -145,6 +156,7 @@ public class GameManager : Singleton<GameManager> {
 
 		case ENUM_GAMESTATE.RESET:
 			_finalScorePanel.SetActive (false);
+			_cameraForScoring.transform.SetParent (null);
 
 			foreach (Text score in _playerScore) {
 				score.text = "0000";
@@ -213,7 +225,7 @@ public class GameManager : Singleton<GameManager> {
 
 			GameObject scoring = new GameObject ();
 			scoring = Instantiate (_scoringPrefab);
-			scoring.transform.SetParent(_ScoringRecap.transform);
+			scoring.transform.SetParent(_ScoringRecap.transform, false);
 
 			_players[i] = player;
 			_playerScore [i] = scoring.GetComponent<Text> ();
@@ -253,7 +265,8 @@ public class GameManager : Singleton<GameManager> {
 
 		//Display score
 		for (int i = 0; i < _players.Length; ++i) {
-			_playerScore [i].text = GetPlayer(i).Score.ToString();
+			_playerScore [i].text = "P"+GetPlayer(i).PlayerNumber.ToString()+": "+GetPlayer(i).Score.ToString();
+			_playerScore [i].color = GetPlayer(i)._playerColor; 
 		}
 
 	}
