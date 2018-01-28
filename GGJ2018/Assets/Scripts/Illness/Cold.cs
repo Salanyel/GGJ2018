@@ -44,7 +44,11 @@ public class Cold : Illness {
 		_gif.gameObject.SetActive (true);
 		_gif.LaunchGif ();
 
-		yield return new WaitForSeconds (2.5f);
+		yield return new WaitForSeconds (0.8f);
+
+		_gif.GetComponent<AudioSource> ().Play ();
+
+		yield return new WaitForSeconds (1.7f);
 
 		_gif.ReverseGIF ();
 

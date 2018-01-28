@@ -38,7 +38,7 @@ public class GIF : MonoBehaviour {
 				_index--;
 			}
 
-			if (_index < _sprites.Length) {
+			if (_index < _sprites.Length && _index > 0) {
 				_image.sprite = _sprites [_index];
 			}
 
