@@ -42,6 +42,7 @@ public class NotContaminedAction : PlayerActions
             	);
                 rigidbody.AddForce((transform.forward + randv) * 18f, ForceMode.Impulse);
             }
+            _animator.SetTrigger("Attack");
         }
 
         Debug.Log(hitInfo.collider.name);
@@ -49,9 +50,7 @@ public class NotContaminedAction : PlayerActions
 			Debug.Log("Coup dans le vide");
 		}
 
-        if(!_audioSource.isPlaying){
-            _audioSource.Play();
-        }
+		GetComponent<Player> ().PlaySound (GetComponent<Player> ()._clack);
 
 	}
 
