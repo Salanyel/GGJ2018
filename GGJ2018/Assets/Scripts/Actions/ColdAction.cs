@@ -35,9 +35,9 @@ public class ColdAction : PlayerActions {
 	}
 
 	void Fire(){
-		//StartCoroutine(HideDisplay());
-
 		_morveAttack.Play();
+
+		GetComponent<Player> ().PlaySound (GetComponent<Player> ()._contamination);
 
 		foreach(GameObject g in SendRay()){
 			GameManager.Instance.ContaminedPlayer(g);
