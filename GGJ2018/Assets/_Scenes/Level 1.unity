@@ -6141,12 +6141,17 @@ Prefab:
     - target: {fileID: 114241399387178122, guid: 7e9474016d91dd54d81b3ae5f5b58012,
         type: 2}
       propertyPath: _isIllPlayerForcedAtBeginning
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114241399387178122, guid: 7e9474016d91dd54d81b3ae5f5b58012,
         type: 2}
       propertyPath: _illPlayerForTest
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114241399387178122, guid: 7e9474016d91dd54d81b3ae5f5b58012,
+        type: 2}
+      propertyPath: _isSkipingLoading
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e9474016d91dd54d81b3ae5f5b58012, type: 2}
