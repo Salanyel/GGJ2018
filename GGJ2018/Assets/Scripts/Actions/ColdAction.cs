@@ -31,20 +31,18 @@ public class ColdAction : PlayerActions {
 		_chargeAmount = 0f;
 
 		GameObject particleObject = Resources.Load("MorveParticle") as GameObject;
-		GameObject _po = Instantiate(particleObject,transform);
-		_morveAttack = _po.GetComponent<ParticleSystem>();
+		_morveAttack = particleObject.GetComponent<ParticleSystem>();
 
 		_animator = GetComponentInChildren<Animator>();
 		coolDownTime = 1f;
-
 		
 	}
 
 	void Fire(){
+		//StartCoroutine(HideDisplay());
+
 		_morveAttack.Play();
 		_animator.SetTrigger("Atchoum");
-
-		GetComponent<Player> ().PlaySound (GetComponent<Player> ()._contamination);
 
 		foreach(GameObject g in SendRay()){
 			GameManager.Instance.ContaminedPlayer(g);
