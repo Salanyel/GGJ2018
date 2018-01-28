@@ -51,10 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4121978a47ecf429c09823a6bcbea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _illPlayerForTest: 0
+  _isIllPlayerForcedAtBeginning: 0
+  _isSkipingLoading: 1
+  _illPlayerForTest: 1
+  _numberOfPlayersInTheGame: 4
   _SecondsForGame: 60
   _scoringPrefab: {fileID: 1834185208424250, guid: fe2419ab841ee93498f5eea5a2c0cd52,
     type: 2}
-  _charactersBodyPrefab: {fileID: 1460330551472778, guid: 01dd87ba68b16794aa05237df27684b3,
+  _charactersBodyPrefab: {fileID: 1992857887769382, guid: 7639b79e42cb6314ca323bec1da07803,
     type: 2}
   _ScoringRecap: {fileID: 0}
+  _gameState: 0
