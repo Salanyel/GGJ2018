@@ -189,6 +189,9 @@ public class GameManager : Singleton<GameManager> {
 			player.AddComponent<PlayerController>();
 			
 			player.AddComponent<Pusher>();
+			AudioSource _as = player.AddComponent<AudioSource>();
+			_as.playOnAwake = false;
+			_as.clip = Resources.Load("sounds/Clack_Sound") as AudioClip;
 
 			p.SetIsContamined(false);
 
