@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4102341480022920}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-thigh.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4873473051769950}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-foot.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4833567206229850}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-thigh.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4907561822079420}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-spine.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4854982477944500}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-spine.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4223308480147918}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Big.L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4198550385494076}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-shin.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4482087374268240}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Little.L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4656656043683718}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Eye.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4738403168386838}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Big.L.003_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4732549635771480}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Big.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4420684235721468}
   - component: {fileID: 137881565103320252}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wormsberg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4791785415374020}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Eye.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4852156262354622}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-toe.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4392813682558156}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Big.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4603703864232794}
   - component: {fileID: 95513246527289794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wormsberg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4275678267697036}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-shin.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4932930053248360}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Big.L.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4346097123878024}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-spine.006_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4843833174294782}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Eye.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4782445694475348}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-spine.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4233448445805412}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-toe.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4077507217107964}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4306954973649648}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-shin.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4117906710265288}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-foot.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4300229899816658}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rig_catcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4779359674189534}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-thigh.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4520247417675386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Little.R.002_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4572716546069086}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Little.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4371627289942716}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-spine.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -471,7 +471,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4070251376727036}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-thigh.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4243807528889026}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Little.L.002_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4898535224837958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-toe.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4930805713492208}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-spine.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4237325635762504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Little.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4910077895074192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Little.R.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +561,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4267474695754882}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Big.R.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4942802816275536}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Big.R.003_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4256332251335134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-spine.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4728867895781240}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-toe.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,9 +623,9 @@ GameObject:
   - component: {fileID: 4634839310113326}
   - component: {fileID: 65845708984992290}
   - component: {fileID: 54612304821413024}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RIGPlayer
-  m_TagString: Untagged
+  m_TagString: Players
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -638,7 +638,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4226884074583178}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Tentacle.Big.R.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +653,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4467617996125922}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-shin.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -668,7 +668,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4806163071993864}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAT-Eye.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1331,7 +1331,7 @@ Animator:
   m_GameObject: {fileID: 1407282751500798}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2e1254b707f06084fa9378971de9e4df, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: db92ba18ed5f5564da7f591dd9d118ef, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
