@@ -42,7 +42,7 @@ public class ColdAction : PlayerActions {
 		_morveAttack.Play();
 		_animator.SetTrigger("Atchoum");
 
-		GetComponent<Player> ().PlaySound (GetComponent<Player> ()._contamination);
+		GetComponent<Player> ().PlaySoundContamination ();
 
 		foreach(GameObject g in SendRay()){
 			GameManager.Instance.ContaminedPlayer(g);

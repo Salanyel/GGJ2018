@@ -10,7 +10,9 @@ public static class ResourcesData {
 	public const string _player4Material = "Chara/CharaMaterial_04";
 
 	public const string _clackSound = "sounds/Clack_Sound";
-	public const string _contamination = "sounds/SonAtchoum_1";
+	public const string _contamination1 = "sounds/SonAtchoum_1";
+	public const string _contamination2 = "sounds/Atchoom_Sound_V2";
+	public const string _contamination3 = "sounds/Atchoom_Sound_V3";
 	public const string _audioMixer = "sounds/AudioMixer";
 
 	public const string _shaderSickChannel = "_Sickness";
