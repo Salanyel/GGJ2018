@@ -20,6 +20,7 @@ public class NotContaminedAction : PlayerActions
 
     override protected void DoAction()
     {
+        _animator.SetTrigger("Attack");
         RaycastHit hitInfo;
         Physics.Raycast(transform.position, transform.forward, out hitInfo, actionPushRange);
         //push that guy
@@ -41,7 +42,6 @@ public class NotContaminedAction : PlayerActions
             	);
                 rigidbody.AddForce((transform.forward + randv) * 18f, ForceMode.Impulse);
             }
-            _animator.SetTrigger("Attack");
         }
 
         Debug.Log(hitInfo.collider.name);
