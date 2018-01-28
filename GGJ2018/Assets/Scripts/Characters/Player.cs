@@ -10,6 +10,9 @@ public class Player : MonoBehaviour {
 	public bool _allowInput = true;
 	public Color _playerColor;
 
+	public AudioClip _clack;
+	public AudioClip _contamination;
+
 	float _score;
 	int _indexForMaterial = 0;
 
@@ -56,5 +59,13 @@ public class Player : MonoBehaviour {
 		gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().materials = materials;
 
 		_playerColor = materials[_indexForMaterial].color;
+	}
+
+	public void PlaySound(AudioClip p_clip) {
+		if (!GetComponent<AudioSource> ().isPlaying) {
+			GetComponent<AudioSource> ().Stop ();
+		}
+
+		GetComponent<AudioSource> ().PlayOneShot (p_clip);
 	}
 }

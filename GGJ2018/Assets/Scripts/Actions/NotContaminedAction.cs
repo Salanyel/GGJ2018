@@ -49,9 +49,7 @@ public class NotContaminedAction : PlayerActions
 			Debug.Log("Coup dans le vide");
 		}
 
-        if(!_audioSource.isPlaying){
-            _audioSource.Play();
-        }
+		GetComponent<Player> ().PlaySound (GetComponent<Player> ()._clack);
 
 	}
 

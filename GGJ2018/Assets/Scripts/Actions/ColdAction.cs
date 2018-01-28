@@ -39,10 +39,10 @@ public class ColdAction : PlayerActions {
 	}
 
 	void Fire(){
-		//StartCoroutine(HideDisplay());
-
 		_morveAttack.Play();
 		_animator.SetTrigger("Atchoum");
+
+		GetComponent<Player> ().PlaySound (GetComponent<Player> ()._contamination);
 
 		foreach(GameObject g in SendRay()){
 			GameManager.Instance.ContaminedPlayer(g);
